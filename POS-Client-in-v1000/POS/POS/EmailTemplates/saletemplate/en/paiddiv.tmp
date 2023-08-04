@@ -1,0 +1,5 @@
+<div class="h-payed">
+  <h2 style="text-decoration: underline; margin-bottom: 3px; color: #47484b;">[[trPaid]]:</h2>
+  <span style="font-size: 14px; font-weight: normal; color: #47484b;">[[payedsum]] [[currency]]</span>
+</div>
+<div style="clear: both;"></div>
