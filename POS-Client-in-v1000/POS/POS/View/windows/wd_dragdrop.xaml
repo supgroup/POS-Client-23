@@ -1,0 +1,28 @@
+﻿<Window x:Class="POS.View.windows.wd_dragdrop"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS.View.windows"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+         Title="Increase POS"  Height="500" Width="200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition    Height="100"></RowDefinition>
+            <RowDefinition    Height="100"></RowDefinition>
+            <RowDefinition    Height="100"></RowDefinition>
+            <RowDefinition    Height="100"></RowDefinition>
+            <RowDefinition    Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" x:Name="txt1" Text="txt1" Margin="25" Padding="10" Background="Pink" HorizontalAlignment="Center" AllowDrop="True" MouseDown="Txt1_MouseDown" DragEnter="Txt1_DragEnter" Drop="Txt1_Drop"/>
+        <TextBlock Grid.Row="1" x:Name="txt2" Text="txt2" Margin="25" Padding="10" Background="Pink" HorizontalAlignment="Center" AllowDrop="True" DragEnter="Txt2_DragEnter" Drop="Txt2_Drop" MouseDown="Txt2_MouseDown"/>
+        <TextBlock Grid.Row="2" x:Name="txt3" Text="txt3" Margin="25" Padding="10" Background="Pink" HorizontalAlignment="Center" AllowDrop="True" MouseDown="Txt3_MouseDown" DragEnter="Txt3_DragEnter" Drop="Txt3_Drop"/>
+        <Grid Grid.Row="3"  x:Name="grid_drag" Background="Blue" MouseDown="Grid_drag_MouseDown">
+            <TextBlock Text="grid1"/>
+        </Grid>
+        <Grid Grid.Row="4"  x:Name="grid_drop" Background="Aqua" AllowDrop="True" DragEnter="Grid_drop_DragEnter" Drop="Grid_drop">
+            <TextBlock Text="grid2"/>
+        </Grid>
+
+    </Grid>
+</Window>

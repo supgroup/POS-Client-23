@@ -1,0 +1,113 @@
+﻿<Window x:Class="POS.View.windows.wd_invoiceItemsDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS.View.windows"
+        mc:Ignorable="d" KeyDown="HandleKeyPress"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="SC Commerce"
+         WindowStyle="None" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" Margin="0"
+        Height="189" Width="300"  Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
+        Loaded="Window_Loaded" Closing="Window_Closing" >
+    <Grid Grid.Column="1" Grid.Row="1"    x:Name="grid_main">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid   >
+            <Border  BorderThickness="0" Grid.Row="0" 
+                    CornerRadius="7,7,0,0"  Background="#178DD2">
+                <Grid>
+
+                    <Button   IsCancel="true"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" 
+                             BorderBrush="{x:Null}"  Foreground="White" Margin="7.5,0"  x:Name="btn_colse" Click="Btn_colse_Click"
+                             FontWeight="SemiBold" Width="24" Padding="0" ToolTip="Close"  FontSize="14">
+                        <materialDesign:PackIcon Foreground="White" Kind="Close" 
+                                         Width="20" Height="20"/>
+                    </Button>
+                    <Grid  HorizontalAlignment="Center"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Path Fill="White" Stretch="Fill" Margin="5,0"
+                              HorizontalAlignment="Right" Grid.Column="0"  
+                         VerticalAlignment="Center"  Width="20" Height="20"
+                              Data="M78.4,98c14.9-4.3,28.7-8.3,42.6-12.2c51.4-14.6,102.7-29.4,154.2-43.7c5-1.4,11.1-1.6,16.1-0.2
+	c64.6,18.1,129.1,36.6,193.6,55c0.9,0.3,1.8,0.7,4.1,1.7c-13.9,3.9-26.4,7.4-39,10.9c-53.8,15.1-107.6,30.1-161.5,45.1
+	c-2.6,0.7-5.8,1.2-8.3,0.5C213.5,136.5,146.7,117.7,80,99C79.8,99,79.6,98.8,78.4,98z M268.2,172.2c-0.9,1.7-1.5,3.2-2.4,4.6
+	c-11.2,18.7-22.4,37.5-33.7,56.2c-7.3,12.1-18.4,16.6-31.9,12.9c-55.8-15.6-111.6-31.2-167.3-47c-18.7-5.3-25.9-23.6-16.1-40.2
+	c8.8-15,17.8-29.8,26.6-44.7c1.6-2.7,2.9-4.3,6.7-3.2c71.7,20.2,143.4,40.3,215.1,60.4C266.1,171.4,267,171.8,268.2,172.2z
+	 M298.4,172c29.5-8.2,58.2-16.2,86.9-24.2c43.6-12.2,87.2-24.3,130.8-36.7c3.9-1.1,5.7-0.5,7.8,3c8.5,14.7,17.4,29.1,26,43.7
+	c10.4,17.7,3.4,35.7-16.5,41.4c-55.5,15.7-111.1,31.3-166.7,46.8c-13.2,3.7-24.4-0.9-31.5-12.6C322.9,213.2,310.9,193,298.4,172z
+	 M51.6,224.4c15.4,4.3,30.5,8.4,45.6,12.6c32.2,9,64.4,18.1,96.6,27.1c23,6.5,42.9-1.4,55.2-21.8c7.9-13,15.7-26.1,24.4-40.6
+	c0,27.8,0,53.7,0,80.4c-2.5,0-4.7,0-6.9,0c-28.8,0-57.6,0-86.5,0c-25.7,0-41.7,16-41.7,41.7c0,28.2,0,56.4,0,84.6c0,2.2,0,4.5,0,7.6
+	c-4.3-1.1-8-1.9-11.6-2.9c-22-6-44.1-12-66.1-18.1c-7.5-2.1-9.4-4.4-9.4-12.1c0-51.3,0-102.6,0-153.9
+	C51.2,227.8,51.5,226.4,51.6,224.4z M515.8,224.5c0,2.9,0,4.9,0,6.9c0,49.9,0,99.7,0,149.6c0,10.3-1.6,12.3-11.4,15
+	c-23,6.2-46.1,12.5-69.1,18.7c-1.9,0.5-3.8,0.9-6.6,1.5c0-3,0-5.2,0-7.4c0-28.2,0-56.4,0-84.6c0-26.1-16-42-42.1-42
+	c-28.6,0-57.2,0-85.8,0c-2.2,0-4.4,0-7.1,0c0-26.5,0-52.5,0-80c2.1,3.4,3.7,5.9,5.2,8.4c6.4,10.7,12.8,21.4,19.2,32.1
+	c12.2,20.3,32.2,28,55.3,21.5c45.2-12.6,90.4-25.3,135.6-37.9C510.8,225.7,512.8,225.2,515.8,224.5z M409.4,324.6
+	c0-15.6-7.4-22.9-22.9-22.9c-68.5,0-136.9,0-205.4,0c-16.4,0-23.6,7.1-23.6,23.4c0,78.1,0,99.7,0,177.8c0,16,7.2,23.2,23.2,23.2
+	c68.3,0,136.5,0,204.8,0c16.9,0,23.9-6.9,23.9-23.7c0-38.8,0-21.2,0-60.1C409.4,403,409.5,363.8,409.4,324.6z M275,350.2
+	c31.4-0.1,62.9,0,94.3-0.1c5.1,0,9.4,1.7,10.2,6.7c0.5,3.1-0.8,7.3-2.8,9.8c-1.5,1.9-5.4,2.5-8.3,2.5c-15.5,0.2-31,0.1-46.5,0.1
+	s-31,0-46.5,0c-6.9,0-11.2-3.7-11.3-9.3C263.9,354.3,268.3,350.3,275,350.2z M275.5,408.2c15.5-0.1,31,0,46.6,0c15.5,0,31,0,46.6,0
+	c7.3,0,11.7,3.7,11.7,9.6c0,5.8-4.5,9.8-11.7,9.8c-31,0.1-62.1,0.1-93.1,0c-7,0-11.6-4.3-11.4-10.1
+	C264.3,411.9,268.6,408.3,275.5,408.2z M276.2,466.2c30.6-0.1,61.3,0,91.9,0c7.7,0,12.3,3.8,12.2,9.8c0,6.1-4.5,9.6-12.3,9.6
+	c-15.3,0-30.6,0-46,0c-15.3,0-30.6,0-46,0c-7.4,0-11.8-3.5-12-9.4C263.9,470.3,268.6,466.2,276.2,466.2z M189.6,353.1
+	c3.8-3.9,9.3-3.7,14.2,0.4c0.6,0.5,1.2,1.1,2.5,2.3c7.1-7.2,13.7-14,20.5-20.8c5.2-5.1,10.8-5.5,15-1.2c4.1,4.2,3.6,9.9-1.5,15.1
+	c-8.6,8.7-17.2,17.4-25.9,25.9c-6,5.9-10.7,5.8-16.8-0.2c-2.3-2.3-4.7-4.6-6.9-6.9C185.8,362.7,185.5,357.4,189.6,353.1z
+	 M189.4,411.4c3.9-4.3,9.1-4.1,14.6,0.4c0.6,0.5,1.2,1,2.5,2c7-7.1,13.5-13.9,20.1-20.5c5.3-5.3,10.6-5.8,15-1.6
+	c4.2,4,3.8,10-1.2,15c-8.7,8.8-17.5,17.6-26.4,26.4c-5.7,5.6-10.5,5.5-16.4-0.2c-2.3-2.3-4.7-4.6-6.9-6.9
+	C185.9,420.9,185.4,415.7,189.4,411.4z M189.4,469.5c4-4.2,9.2-4,14.6,0.5c0.5,0.4,0.9,0.8,2.2,1.8c6.8-6.8,13.4-13.5,20-20.1
+	c5.4-5.4,11.2-6.1,15.5-1.9s3.7,10.1-1.7,15.5c-8.5,8.5-16.9,17.1-25.5,25.5c-6.1,6.1-10.7,6-16.8,0.1c-2.3-2.3-4.7-4.6-6.9-6.9
+	C185.9,479,185.4,473.8,189.4,469.5z"/>
+                        <TextBlock Text="invoice items details" x:Name="txt_title" Foreground="White" 
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Grid.Column="1"      Margin="5,0"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border BorderThickness="1,0,1,1"  Grid.Row="1"
+                    CornerRadius="0,0,7,7" BorderBrush="#999999"  Background="White">
+            <Grid  Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="txt_skipProperties" Grid.Row="0" Grid.Column="0" 
+                                Margin="10" Text="print On Save Purchase" Foreground="#6e6e6e"
+                            HorizontalAlignment="Left" VerticalAlignment="Center"
+                                  FontSize="12"/>
+                <ToggleButton x:Name="tgl_skipProperties" Grid.Row="0" Grid.Column="1"    IsChecked="True"
+                                 VerticalAlignment="Center" Padding="10,0,5,0" 
+                                              Margin="10" Height="13" Width="28" />
+                <TextBlock x:Name="txt_skipSerialsNum" Grid.Row="1" Grid.Column="0" 
+                              Margin="10" Text="email On Save Purchase" Foreground="#6e6e6e"
+                            HorizontalAlignment="Left" VerticalAlignment="Center"
+                                  FontSize="12"/>
+                <ToggleButton x:Name="tgl_skipSerialsNum" Grid.Row="1" Grid.Column="1"    IsChecked="True"
+                                 VerticalAlignment="Center" Padding="10,0,5,0"
+                                              Margin="10" Height="13" Width="28" />
+                <Button   Grid.Row="10" Grid.ColumnSpan="2"   Content="save" materialDesign:ButtonAssist.CornerRadius="7"
+                       Margin="10,5" x:Name="btn_save" Click="Btn_save_Click"
+                          Background="#178DD2" BorderBrush="{x:Null}" />
+            </Grid>
+
+        </Border>
+
+
+    </Grid>
+</Window>

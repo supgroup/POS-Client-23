@@ -1,0 +1,149 @@
+﻿<Window x:Class="POS.View.windows.wd_acceptUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS.View.windows"
+        mc:Ignorable="d" KeyDown="HandleKeyPress"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         WindowStyle="None" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" Margin="0"
+         Title="SC Commerce" Height="175" Width="300" AllowsTransparency="True"  Background="Transparent" 
+        Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid Grid.Column="1" Grid.Row="1"   x:Name="grid_acceptUser">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid  >
+            <Border  BorderThickness="0" Grid.Row="0" 
+                    CornerRadius="7,7,0,0"  Background="#178DD2">
+                <Grid>
+
+                    <Button   IsCancel="true"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" 
+                             BorderBrush="{x:Null}"  Foreground="White" Margin="7.5,0"  x:Name="btn_colse" Click="Btn_colse_Click"
+                             FontWeight="SemiBold" Width="24" Padding="0" ToolTip="Close"  FontSize="14">
+                        <materialDesign:PackIcon Foreground="White" Kind="Close" 
+                                         Width="20" Height="20"/>
+                    </Button>
+                    <Grid  HorizontalAlignment="Center"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Path Fill="White" Stretch="Fill" Margin="5,0"
+                              HorizontalAlignment="Right" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="15" Height="15"
+                              Data="{StaticResource user}"/>
+                        <TextBlock Text="User Confirm" x:Name="txt_user" Foreground="White" 
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Grid.Column="1"      Margin="5,0"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border BorderThickness="1,0,1,1"  Grid.Row="1"
+                    CornerRadius="0,0,7,7" BorderBrush="#999999"  Background="White">
+            <Grid x:Name="grid_mainGrid"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBox x:Name="tb_userName" Grid.Row="0" Text="{Binding username, Mode=OneWay}" Padding="10,0,5,0"   
+                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     BorderThickness="0,0,0,2" materialDesign:HintAssist.Hint="User Name..."    
+                                     Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8"
+                                     BorderBrush="AliceBlue" MaxLength="20"
+                                     TabIndex="12"  IsReadOnly="True"
+                                     materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                     Height="40"  Margin="10,5,10,5" 
+                                     LostFocus="Tb_userName_LostFocus" TextChanged="Tb_userName_TextChanged" >
+                    <TextBox.ToolTip>
+                        <ToolTip x:Name="tt_userName" Content="User Name"
+                                              Placement="left" 
+                                              HorizontalOffset="35"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="20"/>
+                    </TextBox.ToolTip>
+                </TextBox>
+                <Path Fill="#E81123" Grid.Row="0" Stretch="Fill" Margin="5,5,15,5"
+                                  x:Name="p_errorUserName"
+                              HorizontalAlignment="Right"  Grid.Column="2"  Visibility="Collapsed" 
+                         VerticalAlignment="Center" Width="15"  Height="15"
+                              Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8 C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12 C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 L13,15 L13,17 Z">
+                    <Path.ToolTip>
+                        <ToolTip  x:Name="tt_errorUserName"  Content="Name Not Validate"  Style="{StaticResource ToolTipError}"/>
+                    </Path.ToolTip>
+                </Path>
+                <TextBox x:Name="tb_password" Grid.Row="1" Padding="10,0,5,0"   
+                                 BorderThickness="0,0,0,2" materialDesign:HintAssist.Hint="Password..."    
+                                 Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8"
+                                 BorderBrush="AliceBlue" MaxLength="20" Visibility="Collapsed"
+                                 materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                              
+                                 Height="35" Width="340"  Margin="10,5,10,5" Grid.ColumnSpan="2" 
+                                 LostFocus="Tb_password_LostFocus" TextChanged="Tb_password_TextChanged" />
+                <PasswordBox Grid.Row="1" x:Name="pb_password" Padding="10,0,5,0"   
+                                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                                 BorderThickness="0,0,0,2" materialDesign:HintAssist.Hint="Password..."    
+                                 Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8"
+                                 BorderBrush="AliceBlue" MaxLength="20" TabIndex="13"
+                                 materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                       
+                                 Height="40"   Margin="10,5,10,5" Grid.ColumnSpan="2" 
+                                 LostFocus="Tb_password_LostFocus" PasswordChanged="Pb_password_PasswordChanged" >
+                    <PasswordBox.ToolTip>
+                        <ToolTip x:Name="tt_password" Content="Password"
+                                              Placement="left" 
+                                              HorizontalOffset="35"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="20"/>
+                    </PasswordBox.ToolTip>
+           
+                </PasswordBox>
+                <Path Fill="#E81123" Grid.Row="1" Stretch="Fill" Margin="5,5,40,5"
+                              HorizontalAlignment="Right"  Grid.Column="2"  Visibility="Collapsed" 
+                         VerticalAlignment="Center" Width="15"  Height="15"
+                                  x:Name="p_errorPassword"
+                              Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8 C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12 C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 L13,15 L13,17 Z">
+                    <Path.ToolTip>
+                        <ToolTip  x:Name="tt_errorPassword"  Content="Name Not Validate"  Style="{StaticResource ToolTipError}"/>
+                    </Path.ToolTip>
+                </Path>
+                <Path Fill="#7e7e7e" Grid.Row="1" Stretch="Fill" Margin="5,5,15,5"
+                              HorizontalAlignment="Right"  Grid.Column="2"  Visibility="Visible" 
+                         VerticalAlignment="Center" Width="20"  Height="15" x:Name="p_showPassword" 
+                              Data="M11,0.5C6,0.5,1.7,3.6,0,8c1.7,4.4,6,7.5,11,7.5s9.3-3.1,11-7.5C20.3,3.6,16,0.5,11,0.5z M11,13
+	c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5S13.8,13,11,13z M11,5C9.3,5,8,6.3,8,8s1.3,3,3,3s3-1.3,3-3S12.7,5,11,5z" 
+                                  MouseEnter="P_showPassword_MouseEnter" 
+                                  MouseLeave="P_showPassword_MouseLeave">
+                </Path>
+
+                <Button   Grid.Row="3"  
+                       Margin="10,5" x:Name="btn_confirmation" Click="Btn_confirmation_Click"
+                          Background="#178DD2" BorderBrush="{x:Null}"  >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock  FontSize="16" Foreground="White"  Name="txt_confirmation" Text="Confirmation" VerticalAlignment="Center"/>
+                        <materialDesign:PackIcon Name="path_confirmation"
+                                                 Kind="CheckCircle" VerticalAlignment="Center" 
+                                                 Width="15"  Height="15" Margin="4,1,0,0"/>
+
+                    </StackPanel>
+                    <!--<Button.ToolTip>
+                        <ToolTip x:Name="tt_confirmation" Content="Confirmation"
+                                    Placement="left" 
+                                    HorizontalOffset="15"
+                                    PlacementRectangle="50,0,0,0"
+                                    VerticalOffset="30"/>
+                    </Button.ToolTip>-->
+                </Button>
+
+            </Grid>
+
+        </Border>
+
+
+    </Grid>
+</Window>

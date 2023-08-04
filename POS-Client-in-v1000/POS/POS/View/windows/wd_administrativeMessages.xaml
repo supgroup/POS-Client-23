@@ -1,0 +1,689 @@
+﻿<Window x:Class="POS.View.windows.wd_administrativeMessages"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS.View.windows"
+        mc:Ignorable="d" KeyDown="HandleKeyPress"
+        Title="SC Commerce"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        WindowStyle="None" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" Margin="0"
+         Height="600" Width="800" Background="Transparent" AllowsTransparency="True" 
+        Loaded="Window_Loaded">
+    <Grid Grid.Column="1" Grid.Row="1"   x:Name="grid_main">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid  >
+            <Border  BorderThickness="0" Grid.Row="0" 
+                    CornerRadius="7,7,0,0" Background="White" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition x:Name="col_writeMessage" Width="*"/>
+                        <ColumnDefinition x:Name="col_readMessage" Width="*"/>
+                        <!--<ColumnDefinition Width="35"/>-->
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"    BorderThickness="1 1 0 0"  Height="auto" 
+                            materialDesign:ButtonAssist.CornerRadius="7 0 0 0"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                            BorderBrush="{StaticResource Grey}"
+                            Background="{StaticResource LightGrey}"
+                             x:Name="btn_writeMessage" 
+                            Click="Btn_writeMessage_Click">
+                        <Grid  HorizontalAlignment="Center"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1.2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path x:Name="path_writeMessage" Fill="{StaticResource MainColorlightGrey}" Stretch="Fill" Margin="5,0"
+                              HorizontalAlignment="Right" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="15" Height="15"
+                              Data="M295.6,58.7c-0.1-3.8,0-7.5,0-11.3c0-2.2,0.6-2.7,2.8-2.7c3,0,6,0,9,0c1.3,0,2,0.6,2.1,1.9c0.1,3.6,0.2,7.1,0.2,10.7
+	c0,1.4,0.5,1.6,1.7,1.6c9.2-0.1,18.4-0.1,27.6-0.1c1.2,0,1.6-0.3,1.6-1.6c-0.1-3.1,0-6.3,0.1-9.4c0-2.5,0.7-3.1,3.1-3.1
+	c2.9,0,5.8,0,8.7,0c1.3,0,2.3,0.9,2.3,2.3c0,4.8,0,9.7,0,14.5c0,1.3-1.1,2.2-2.7,2.2c-8.8,0-17.6,0-26.3,0c0,0,0-0.1,0-0.1
+	c-8.5,0-16.9,0.1-25.4,0C294.7,63.5,295.8,63.6,295.6,58.7z M314.9,56.5c6.9,0,13.8,0,20.7,0c1.9,0,2.7-0.8,2.7-2.6
+	c0-4.1,0-8.2,0-12.3c0-1.4,0.3-2.9-1.1-4h-23.8c-1.8,1.3-1.2,3.1-1.2,4.8c-0.1,3.7-0.1,7.4-0.1,11.1C312,55.5,313,56.5,314.9,56.5z
+	 M388,172.8c0.2,0,0.3,0,0.5,0c2.3-4,4.5-8,6.6-11.7c-3.2-0.7-6.3-1.3-9.5-2C386.4,163.9,387.2,168.3,388,172.8z M376,54.7
+	c0.1,18.6,0.2,37.3,0.2,55.9c0,0.2,0,0.4-0.1,0.6v64.6h0v0.2h-32.2c0,0,0,0,0,0h-2.2c-20.9,0-41.9,0-62.8,0c-1.7,0-3.5,0.4-4.8-1.7
+	v0.2c-0.1-0.1-0.1-0.2-0.2-0.3v-121c0-0.1,0.1-0.1,0.1-0.2V53c1.1-1.7,2.8-1.3,4.4-1.3c3.9,0,7.9,0,11.8,0c1.7,0,2.8,1.1,2.8,2.8
+	c0,3.3,0,6.7,0,10c0,1.1,0.3,1.5,1.4,1.5c20.4,0,40.9,0,61.3,0c1.1,0,1.5-0.3,1.5-1.4c-0.1-3.4,0-6.9,0-10.3c0-1.3,1.1-2.5,2.3-2.5
+	c4.6,0,9.2,0,13.8,0.1C375.6,51.9,376,52.4,376,54.7z M290.9,80.4c4.9,0,9.9,0,14.8,0v0.1c4.3,0,8.5,0,12.8,0c1.2,0,2.4-0.1,3.6-0.2
+	c1.2-0.1,1.8-0.9,1.8-2.1c-0.1-1.2-0.6-2-2-2.1c-0.8,0-1.6-0.1-2.4-0.1c-8.8,0-17.5,0-26.3,0c-1.1,0-2.2,0.1-3.2,0.2
+	c-0.8,0.1-1.4,0.4-1.5,1.4C288.2,79.2,289.1,80.4,290.9,80.4z M323.9,149.8c0-1.5-0.5-2-2.7-2.2c-0.6,0-1.1-0.1-1.7-0.1
+	c-9.5,0-19.1-0.1-28.6-0.1c-1.4,0-2.5,1-2.5,2.3c0,1.3,1.1,2.3,2.5,2.3c5.1,0,10.2,0,15.4,0c4.9,0,9.9,0,14.8,0
+	C323,152,323.8,151.3,323.9,149.8z M361.7,134.1c0-1.4-1.1-2.2-2.8-2.2c-11.4,0-22.7,0-34.1,0c0,0,0,0,0,0c-4.2,0-8.4,0-12.5,0
+	c-7.2,0-14.5,0-21.7,0.1c-0.7,0-1.6,0.4-2,0.9c-1.1,1.7,0.1,3.6,2.2,3.6c22.7,0,45.4,0,68,0C360.5,136.5,361.7,135.4,361.7,134.1z
+	 M361.7,121.4c0-1.4-1.1-2.2-2.8-2.2c-11.4,0-22.7,0-34.1,0c0,0,0,0,0,0c-4.2,0-8.4,0-12.5,0c-7.2,0-14.5,0-21.7,0.1
+	c-0.7,0-1.6,0.4-2,0.9c-1.1,1.7,0.1,3.6,2.2,3.6c22.7,0,45.4,0,68,0C360.5,123.8,361.7,122.8,361.7,121.4z M291.1,109.1
+	c5.4,0,10.8,0,16.2,0c5.5,0,11,0,16.5,0c1.5,0,2.5-1,2.5-2.4c0-1.3-1-2.3-2.4-2.3c-10.9,0-21.8,0-32.7,0c-1.4,0-2.8,1.2-2.7,2.4
+	C288.4,107.9,289.8,109.1,291.1,109.1z M362,92.3c0-1.4-1.1-2.2-2.8-2.2c-11.4,0-22.7,0-34.1,0v0c-4.2,0-8.4,0-12.5,0
+	c-7.2,0-14.5,0-21.7,0.1c-0.7,0-1.6,0.4-2,0.9c-1.1,1.7,0.1,3.6,2.2,3.6c22.7,0,45.4,0,68,0C360.7,94.8,362,93.7,362,92.3z
+	 M405.1,94.1c-2.1-0.4-4.2-0.7-6.3-1.1c-1.2-0.2-1.9,0.3-2.1,1.5c-0.3,1.8-0.7,3.6-1.1,5.9c3.1,0.5,6,0.9,8.9,1.3
+	c0.4,0,1-0.5,1.1-0.9c0.4-1.5,0.6-3,0.8-4.5C406.8,95.1,406.3,94.3,405.1,94.1z M404.3,104.3c-2.9-0.6-5.8-1.2-8.8-1.7
+	c-0.2,0.7-0.3,1-0.4,1.3c-3,17.2-6,34.5-9,51.7c-0.2,1.3,0.1,1.8,1.7,1.5c0.7-4.3,1.4-8.7,2.1-13.1c1.4-8.2,2.8-16.3,4.3-24.5
+	c0.1-0.8,0.2-1.9,1.3-1.6c0.4,0.1,0.5,1.3,0.8,2c0,0.1,0,0.3-0.1,0.5c-0.9,5.3-1.8,10.6-2.8,15.9c-1.2,6.6-2.3,13.3-3.5,19.9
+	c-0.1,0.7-0.4,1.4,0.6,1.7c1.6,0.4,3.2,0.8,4.9,1.2c0.2-1.2,0.4-1.7,0.5-2.3c2.1-11.8,4.1-23.7,6.2-35.5c0.9-5.1,1.8-10.2,2.7-15.3
+	C405,105.3,405.4,104.5,404.3,104.3z"/>
+                            <TextBlock Text="write message" x:Name="txt_writeMessageTitle"
+                                       Foreground="{StaticResource MainColorlightGrey}"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Grid.Column="1"      Margin="5,0"/>
+                        </Grid>
+                    </Button>
+                    <Button Grid.Column="1"   BorderThickness="0 1 1 0" Height="auto" 
+                            materialDesign:ButtonAssist.CornerRadius="0 7 0 0"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                            BorderBrush="{StaticResource Grey}"
+                            Background="{StaticResource White}"
+                             x:Name="btn_readMessage" 
+                            Click="Btn_readMessage_Click">
+                        <Grid Grid.Column="1"  HorizontalAlignment="Center"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1.2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path x:Name="path_readMessage" Fill="{StaticResource Grey}" Stretch="Fill" Margin="5,0"
+                              HorizontalAlignment="Right" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="15" Height="15"
+                              Data="M53.05,74.33H25.62a2.13,2.13,0,0,1-2.45-2.44q0-17.89,0-35.78a1.16,1.16,0,0,1,.46-1Q37.06,24,50.47,12.81a4.29,4.29,0,0,1,5.19,0Q69.1,24,82.55,35.14a1,1,0,0,1,.43.91Q83,54,83,71.93a2.11,2.11,0,0,1-2.39,2.4Zm8.1-23.5.34-.21,16.42-9.06c.78-.43,1.56-.85,2.32-1.3a1.16,1.16,0,0,0-1.1-2l-.5.26L71.72,42.3c-.14.08-.29.14-.52.26V27.05H34.9V42.54l-.48-.24-4.09-2.25-3.28-1.81a1.1,1.1,0,0,0-1.33.15,1,1,0,0,0-.32,1.2,1.88,1.88,0,0,0,.74.79q8.24,4.57,16.5,9.13L45,50.81l-.25.28L31.85,63.89c-1.35,1.34-2.71,2.69-4.06,4a1.16,1.16,0,1,0,1.61,1.67c.18-.16.34-.33.51-.5q8.46-8.4,16.91-16.8a.52.52,0,0,1,.75-.1c1.69,1,3.41,1.89,5.1,2.84a.69.69,0,0,0,.8,0c1.67-.94,3.35-1.84,5-2.79a.62.62,0,0,1,.9.12q8.08,8.06,16.19,16.08c.41.41.81.83,1.24,1.22a1.06,1.06,0,0,0,1.33.13,1,1,0,0,0,.55-1.21,1.85,1.85,0,0,0-.49-.8Q71,60.6,63.77,53.44ZM40,41.29H66.16V39.42H40ZM65.43,30.52H41.24c-1.28,0-1.28,0-1.28,1.27,0,.69,0,.69.7.69H65.31a2.09,2.09,0,0,0,.56,0,.48.48,0,0,0,.29-.3c0-.52,0-1.05,0-1.65ZM40,36.27c-.06.54.15.65.66.65q12.45,0,24.91,0h.61V35H40A11.2,11.2,0,0,1,40,36.27Zm26.23,9.48V44.5c0-.68,0-.68-.7-.68H40.78a1.66,1.66,0,0,0-.5,0c-.13.05-.3.19-.3.3,0,.52,0,1,0,1.62Z"/>
+                            <TextBlock Text="read message" x:Name="txt_readMessageTitle"
+                                       Foreground="{StaticResource Grey}"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Grid.Column="1"      Margin="5,0"/>
+                        </Grid>
+                    </Button>
+                    <Button Grid.ColumnSpan="3"  IsCancel="true"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" 
+                             BorderBrush="{x:Null}"  Foreground="White" Margin="7.5,0"  x:Name="btn_colse" Click="Btn_colse_Click"
+                             FontWeight="SemiBold" Width="30" Padding="0" ToolTip="Close"  FontSize="14">
+                        <materialDesign:PackIcon x:Name="icon_close"
+                            Foreground="{StaticResource Grey}" Kind="Close" 
+                                         Width="20" Height="20"/>
+                    </Button>
+
+                </Grid>
+            </Border>
+        </Grid>
+        <Border x:Name="brd_writeMessage" Visibility="Collapsed"
+            BorderThickness="1,0,1,1"  Grid.Row="1"
+                    CornerRadius="0,0,7,7" BorderBrush="#999999"  Background="White">
+            <Grid x:Name="grid_writeMessage"   >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="6*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="2" Grid.RowSpan="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition x:Name="col_messagesPos" Height="0"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid  Margin="5,10,5,5" Grid.Row="0"  IsReadOnly="True"   HeadersVisibility="Column"
+                                   x:Name="dg_writeMessages" AutoGenerateColumns="False"   Background="White"
+                                   ColumnWidth="SizeToHeader"    AlternatingRowBackground="#f3f3f3" AlternationCount="2"
+                                   SelectionChanged="Dg_writeMessage_SelectionChanged" >
+                            <DataGrid.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"></SolidColorBrush>
+                                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#e7f3fa" />
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="0 0 1 0"/>
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*"  Header="title"    Binding="{Binding Path=title }"/>
+                                <!--<DataGridTextColumn Width="2*"  Header="msgContent"    Binding="{Binding Path=msgContent }"/>-->
+                                <DataGridTextColumn Width="*"  Header="date"    Binding="{Binding Path=updateDate, Converter={StaticResource dateFrameConverter} }"/>
+                                <DataGridTemplateColumn Width="30" Header="" IsReadOnly="True" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button  Click="viewPos_click"   x:Name="btn_viewPos"
+                                                   Padding="0"    Margin="-10" 
+                                    Background="{x:Null}" BorderBrush="{x:Null}" >
+                                                <Path 
+                                                  Stretch="Fill"
+                                                   HorizontalAlignment="Center" Grid.Column="0"  
+                                               VerticalAlignment="Center" Width="20" Height="15"
+                                               Margin="-10 0"
+                                                Fill="{StaticResource MainColor}"
+                                                Data="M11,0.5C6,0.5,1.7,3.6,0,8c1.7,4.4,6,7.5,11,7.5s9.3-3.1,11-7.5C20.3,3.6,16,0.5,11,0.5z M11,13
+	c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5S13.8,13,11,13z M11,5C9.3,5,8,6.3,8,8s1.3,3,3,3s3-1.3,3-3S12.7,5,11,5z"/>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="30" Header="" IsReadOnly="True" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button  Click="delete_click"   x:Name="btn_delete"
+                                                 Padding="0"    Margin="-10" 
+                                                 Background="{x:Null}" BorderBrush="{x:Null}" 
+                                                 Visibility="{Binding Path=canDelete, Converter={StaticResource BooleanToVisibilityConverter} }">
+                                                <Path 
+                                                  Stretch="Fill"
+                                                   HorizontalAlignment="Center" Grid.Column="0"  
+                                               VerticalAlignment="Center" Width="20" Height="20"
+                                               Margin="-10 0"
+                                                Fill="{StaticResource MainColor}"
+                                                Data="M26.541 8.471h-5.459c-0.188-3.294-2.918-5.929-6.118-5.929s-5.835 2.635-6.118 5.929h-6.494c-1.035 0-1.882 0.847-1.882 1.882s0.847 1.882 1.882 1.882h1.694v16.941c0 1.035 0.847 1.882 1.882 1.882h17.882c1.035 0 1.882-0.847 1.882-1.882v-16.941h0.941c1.035 0 1.882-0.847 1.788-1.882 0-1.035-0.847-1.882-1.882-1.882zM9.129 28.424h-1.6v-14.871h1.6v14.871zM15.812 28.424h-1.6v-14.871h1.6v14.871zM11.765 8.471c0.188-1.694 1.506-2.918 3.2-2.918s3.012 1.318 3.294 2.918h-6.494zM22.494 28.424h-1.6v-14.871h1.6v14.871z"/>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    <DataGrid x:Name="dg_messagesPos" Margin="5 5 5 10"
+                              Grid.Row="2" Background="White"
+                      materialDesign:DataGridAssist.CornerRadius="5" Visibility="Visible"
+                         IsReadOnly="True" CanUserAddRows="False" 
+                        AutoGenerateColumns="False" 
+                        ColumnWidth="SizeToHeader"  >
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"></SolidColorBrush>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="#e7f3fa" />
+                                <Setter Property="BorderBrush" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0 0 1 0"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <!--<DataGridTextColumn Width="*"  Header="user" Binding="{Binding Path=userRead}"/>-->
+                            <DataGridTextColumn Width="*"  Header="user"  >
+                                <DataGridTextColumn.Binding>
+                                    <MultiBinding Converter="{StaticResource toUserConverter}">
+                                        <Binding Path="isReaded" />
+                                        <Binding Path="userRead" />
+                                        <Binding Path="toUserFullName" />
+                                    </MultiBinding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Width="*"  Header="branch" Binding="{Binding Path=branchName, Converter={StaticResource emptyToSlashConverter}}"/>
+                            <DataGridTextColumn Width="*"   Header="pos" Binding="{Binding Path=posName , Converter={StaticResource emptyToSlashConverter}}"/>
+                            <!--<DataGridTextColumn Width="*"  Header="isReaded" Binding="{Binding Path=isReaded}"/>-->
+                            <DataGridTextColumn Width="*"  Header="DateRead"  >
+                                <DataGridTextColumn.Binding>
+                                    <MultiBinding Converter="{StaticResource showDateConverter}">
+                                        <Binding Path="isReaded" />
+                                        <Binding Path="updateDate" />
+                                    </MultiBinding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Width="30" Header="" IsReadOnly="True" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid Height="20">
+                                            <Path 
+                                               Stretch="Fill"
+                                               HorizontalAlignment="Center" Grid.Column="0"  
+                                               VerticalAlignment="Center" Width="20"  
+                                               Margin="-10 0"
+                                               Fill="{StaticResource MainColor}"
+                                                >
+                                                <Path.Style>
+                                                    <!--<Style TargetType="{x:Type Path}">-->
+                                                    <Style >
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=isReaded}" Value="true">
+                                                                <Setter Property="Path.Data" Value="{StaticResource openEnvelope}" />
+                                                                <Setter Property="Path.Height" Value="20" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=isReaded}" Value="false">
+                                                                <Setter Property="Path.Data" Value="{StaticResource closedEnvelope}" />
+                                                                <Setter Property="Path.Height" Value="15" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Path.Style>
+                                            </Path>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                
+                <Border Grid.RowSpan="4" Grid.Column="1" 
+                        BorderBrush="{StaticResource LightGrey}" BorderThickness="1,0,0,0"
+                        Margin="5 15" />
+
+                <Grid Grid.Row="0"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+                  
+                    <DockPanel LastChildFill="True" Grid.Row="0" Margin="0 10 0 0">
+                        <TextBlock x:Name="txt_messageDetails" Text="messageDetails" Foreground="#737373" FontSize="10" VerticalAlignment="Center" Margin="5,5,5,5"/>
+                    <Button DockPanel.Dock="Right" x:Name="btn_clear" Grid.Row="1" Grid.Column="2" Padding="0" Background="{x:Null}" 
+                                        BorderBrush="{x:Null}" Click="btn_clear_Click" Margin="5,1" ToolTip="clear"  >
+                        <materialDesign:PackIcon Foreground="#178DD2" Kind="RefreshCircle" HorizontalAlignment="Center" Grid.Column="0" VerticalAlignment="Center" Width="30" Height="30">
+                            <materialDesign:PackIcon.ToolTip>
+                                <ToolTip x:Name="tt_clear" Content="clear" Placement="left" HorizontalOffset="5" PlacementRectangle="50,0,0,0" VerticalOffset="20"/>
+                            </materialDesign:PackIcon.ToolTip>
+                        </materialDesign:PackIcon>
+                    </Button>
+                    <Separator Background="{StaticResource LightGrey}" VerticalAlignment="Center" Width="auto" />
+                </DockPanel>
+                <Grid Grid.Row="1">
+
+                    <TextBox x:Name="tb_title" Grid.Row="1" Text="{Binding title, Mode=OneWay}" Padding="10,0,5,0"
+                             BorderThickness="1"  materialDesign:HintAssist.Hint="title..."  
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8"
+                             BorderBrush="#f8f8f8" MaxLength="100" 
+                             materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"                                   Height="40"  Margin="10,5,10,5"
+                             TextChanged="Tb_validateEmptyTextChange" LostFocus="input_LostFocus"/>
+                    <Path Fill="#E81123" x:Name="p_errorTitle" Grid.Row="1" Stretch="Fill" Margin="5,5,15,5"
+                              HorizontalAlignment="Right"   Visibility="Collapsed"   
+                         VerticalAlignment="Center" Width="15"  Height="15"
+                              Data="{StaticResource infoCircle}">
+                        <Path.ToolTip>
+                            <ToolTip x:Name="tt_errorTitle"  Style="{StaticResource ToolTipError}"/>
+                        </Path.ToolTip>
+                    </Path>
+
+                </Grid>
+                <Grid Grid.Row="2">
+                    <TextBox x:Name="tb_msgContent" Grid.Row="8" Text="{Binding msgContent, Mode=OneWay}" 
+                                 Padding="10,0,5,5"     Margin="10,5,10,5"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 BorderThickness="0,0,0,2" materialDesign:HintAssist.Hint="msgContent..."    
+                                 Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8" 
+                                 BorderBrush="AliceBlue"  TextWrapping="Wrap" AcceptsReturn="True"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Center"  
+                                 materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                 MinHeight="70"  Grid.ColumnSpan="2"  
+                                 TextChanged="Tb_validateEmptyTextChange">
+                    </TextBox>
+                        <Path Fill="#E81123" Stretch="Fill" x:Name="p_errorMsgContent" Margin="15,12,15,5"
+                              HorizontalAlignment="Right"  Grid.Column="2"  Visibility="Collapsed"  
+                         VerticalAlignment="Top" Width="15"  Height="15"
+                              Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8 C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12 C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 L13,15 L13,17 Z">
+                        <Path.ToolTip>
+                            <ToolTip x:Name="tt_error_msgContent" Style="{StaticResource ToolTipError}"/>
+                        </Path.ToolTip>
+                    </Path>
+
+                </Grid>
+                <Grid Grid.Row="3">
+                    <TextBox x:Name="tb_notes" Grid.Row="8" Text="{Binding notes, Mode=OneWay}" 
+                                 Padding="10,0,5,5"    Margin="10,5,10,5" 
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 BorderThickness="0,0,0,2" materialDesign:HintAssist.Hint="Note..."    
+                                 Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8" 
+                                 BorderBrush="AliceBlue"  TextWrapping="Wrap" AcceptsReturn="True"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Center"  
+                                 materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                 MinHeight="70"  Grid.ColumnSpan="2" >
+                    </TextBox>
+                    <Path Fill="#E81123" Stretch="Fill" Margin="15,12,15,5"
+                              HorizontalAlignment="Right"  Grid.Column="2"  Visibility="Collapsed"  
+                         VerticalAlignment="Top" Width="15"  Height="15"
+                              Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8 C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12 C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 L13,15 L13,17 Z">
+                        <Path.ToolTip>
+                            <ToolTip x:Name="tt_error_note" Content="Name Not Validate"  Style="{StaticResource ToolTipError}"/>
+                        </Path.ToolTip>
+                    </Path>
+
+                </Grid>
+                   </Grid>
+                <Grid Grid.Row="1"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                 <DockPanel LastChildFill="True" Grid.Row="0">
+                    <TextBlock x:Name="txt_recipients" Text="recipients" Foreground="#737373" FontSize="10" VerticalAlignment="Center" Margin="5,5,5,5"/>
+                        <!--<Button DockPanel.Dock="Right" x:Name="btn_clearPos" Grid.Row="1" Grid.Column="2" Padding="0" Background="{x:Null}" 
+                                        BorderBrush="{x:Null}" Click="btn_clearPos_Click" Margin="5,1" ToolTip="clear" >
+                            <materialDesign:PackIcon Foreground="#178DD2" Kind="RefreshCircle" HorizontalAlignment="Center" Grid.Column="0" VerticalAlignment="Center" Width="30" Height="30">
+                                <materialDesign:PackIcon.ToolTip>
+                                    <ToolTip x:Name="tt_clearPos" Content="clear" Placement="left" HorizontalOffset="5" PlacementRectangle="50,0,0,0" VerticalOffset="20"/>
+                                </materialDesign:PackIcon.ToolTip>
+                            </materialDesign:PackIcon>
+                        </Button>-->
+                        <Separator Background="{StaticResource LightGrey}" VerticalAlignment="Center" Width="auto" />
+                </DockPanel>
+                    <StackPanel Grid.Row="1"  Margin="10 0"
+                                DockPanel.Dock="Right" Orientation="Horizontal" >
+                        <CheckBox x:Name="chk_pos"   IsChecked="True"
+                                                          Background="{StaticResource MainColorBlue}"
+                                                          Content="pos"
+                                                          Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}"
+                                                          Checked="sendToType_check"
+                                                          Unchecked="sendToType_uncheck"/>
+                        <CheckBox x:Name="chk_user"  
+                                                          Background="{StaticResource MainColorBlue}"
+                                                          Content="user"
+                                                          Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}"
+                                                          Checked="sendToType_check"
+                                                          Unchecked="sendToType_uncheck"/>
+                    </StackPanel>
+                    <Grid x:Name="grid_sendToPos" Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0"  LastChildFill="True">
+                        <CheckBox DockPanel.Dock="Right" Background="{StaticResource MainColorBlue}" x:Name="chk_allBranches" Grid.Row="1"  Content="All" Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}" Checked="Chk_allBranches_Checked" Unchecked="Chk_allBranches_Unchecked"></CheckBox>
+                        <Grid>
+                        <ComboBox SelectionChanged="cb_branches_SelectionChanged" 
+                                  Name="cb_branches" 
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                  materialDesign:HintAssist.Hint="Branch ...."
+                                  Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8"  BorderBrush="#737373" BorderThickness="0"  
+                                  Height="40" Margin="10,5,10,5" Padding="10,0,5,0" Grid.Row="1" KeyUp="Cb_branches_KeyUp"></ComboBox>
+                        <Path Fill="#E81123" x:Name="p_errorBranch"  Stretch="Fill" Margin="5,5,30,5"
+                              HorizontalAlignment="Right"   Visibility="Collapsed"   
+                              VerticalAlignment="Center" Width="15"  Height="15"
+                              Data="{StaticResource infoCircle}">
+                            <Path.ToolTip>
+                                <ToolTip x:Name="tt_errorBranch"  Style="{StaticResource ToolTipError}"/>
+                            </Path.ToolTip>
+                        </Path>
+                        </Grid>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1"  LastChildFill="True" x:Name="pnl_pos">
+                        <CheckBox DockPanel.Dock="Right" Background="{StaticResource MainColorBlue}" x:Name="chk_allPos" Grid.Row="2"  Content="All" Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}" Checked="Chk_allPos_Checked" Unchecked="Chk_allPos_Unchecked"></CheckBox>
+                        <Grid>
+                        <ComboBox  Name="cb_pos"  
+                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                    materialDesign:HintAssist.Hint="Pos ...."
+                                    Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8"  BorderBrush="#737373" BorderThickness="0"  
+                                    Height="40" Margin="10,5,10,5" Padding="10,0,5,0"  
+                                   SelectionChanged="Cb_pos_SelectionChanged" KeyUp="Cb_pos_KeyUp" ></ComboBox>
+                        <Path Fill="#E81123" x:Name="p_errorPos"  Stretch="Fill" Margin="5,5,30,5"
+                              HorizontalAlignment="Right"   Visibility="Collapsed"   
+                              VerticalAlignment="Center" Width="15"  Height="15"
+                              Data="{StaticResource infoCircle}">
+                            <Path.ToolTip>
+                                <ToolTip x:Name="tt_errorPos"  Style="{StaticResource ToolTipError}"/>
+                            </Path.ToolTip>
+                        </Path>
+                        </Grid>
+                    </DockPanel>
+                    </Grid>
+                    <Grid x:Name="grid_sendToUsers" Grid.Row="2" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="1"  LastChildFill="True" x:Name="pnl_user">
+                            <CheckBox DockPanel.Dock="Right" Background="{StaticResource MainColorBlue}" x:Name="chk_allUser" Grid.Row="2"  Content="All" Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}" 
+                                      Checked="Chk_allUser_Checked" Unchecked="Chk_allUser_Unchecked"></CheckBox>
+                            <Grid>
+                                <ComboBox  Name="cb_user"  
+                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                    materialDesign:HintAssist.Hint="user ...."
+                                    Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8"  BorderBrush="#737373" BorderThickness="0"  
+                                    Height="40" Margin="10,5,10,5" Padding="10,0,5,0"  SelectionChanged="Cb_user_SelectionChanged" KeyUp="Cb_user_KeyUp" ></ComboBox>
+                                <Path Fill="#E81123" x:Name="p_errorUser"  Stretch="Fill" Margin="5,5,30,5"
+                              HorizontalAlignment="Right"   Visibility="Collapsed"   
+                              VerticalAlignment="Center" Width="15"  Height="15"
+                              Data="{StaticResource infoCircle}">
+                                    <Path.ToolTip>
+                                        <ToolTip x:Name="tt_errorUser"  Style="{StaticResource ToolTipError}"/>
+                                    </Path.ToolTip>
+                                </Path>
+                            </Grid>
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+                <ScrollViewer x:Name="scv_sendToPos" 
+                    Grid.Row="2" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
+                    <ListView Grid.Row="3" x:Name="lst_pos"
+                              Margin="10 5"
+                              MouseDoubleClick="Lst_pos_MouseDoubleClick" 
+                              />
+                </ScrollViewer>
+                <ScrollViewer x:Name="scv_sendToUsers" 
+                                Visibility="Collapsed"
+                    Grid.Row="2" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
+                    <ListView Grid.Row="3" x:Name="lst_users"
+                              Margin="10 5"
+                              MouseDoubleClick="Lst_users_MouseDoubleClick" 
+                              />
+                </ScrollViewer>
+                <Button x:Name="btn_save" 
+                        Grid.Row="3"
+                        VerticalAlignment="Bottom"
+                        Background="{StaticResource MainColor}" 
+                        BorderBrush="{x:Null}" Click="Btn_save_Click"
+                        Margin="10 10"    Content="send"/>
+            </Grid>
+        </Border>
+        <Border x:Name="brd_readMessage" Visibility="Visible"
+            BorderThickness="1,0,1,1"  Grid.Row="1"
+                    CornerRadius="0,0,7,7" BorderBrush="#999999"  Background="White">
+            <Grid x:Name="grid_readMessage"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid  x:Name="grid_mainGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="23*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="dg_readMessage" Margin="5 10" Grid.Row="0" Grid.ColumnSpan="2"  Background="White"
+                              materialDesign:DataGridAssist.CornerRadius="5" Visibility="Visible"
+                              IsReadOnly="True" CanUserAddRows="False"  
+                              SelectionChanged="Dg_readMessage_SelectionChanged"
+                              AutoGenerateColumns="False" ColumnWidth="SizeToHeader"  >
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"></SolidColorBrush>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="#e7f3fa" />
+                                <Setter Property="BorderBrush" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0 0 1 0"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <!--<DataGridTextColumn Width="*"  Header="title"    Binding="{Binding Path=title }"/>-->
+                            <DataGridTextColumn Width="*"  Header="title"  >
+                                <DataGridTextColumn.Binding>
+                                    <MultiBinding Converter="{StaticResource replyTitleConverter}">
+                                        <Binding Path="mainMsgId" />
+                                        <Binding Path="title" />
+                                    </MultiBinding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Width="*"  Header="date"    Binding="{Binding Path=updateDate, Converter={StaticResource dateFrameConverter} }"/>
+                            <DataGridTextColumn Width="*"  Header="branchName"    Binding="{Binding Path=branchCreatorName }"/>
+                            <DataGridTextColumn Width="*"  Header="userName"    Binding="{Binding Path=msgCreatorName }"/>
+                            <DataGridTemplateColumn Width="30" Header="" IsReadOnly="True" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid Height="20">
+                                        <Path 
+                                               Stretch="Fill"
+                                               HorizontalAlignment="Center" Grid.Column="0"  
+                                               VerticalAlignment="Center" Width="20"  
+                                               Margin="-10 0"
+                                               Fill="{StaticResource MainColor}"
+                                                >
+                                            <Path.Style>
+                                                <!--<Style TargetType="{x:Type Path}">-->
+                                                <Style >
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=isReaded}" Value="true">
+                                                            <Setter Property="Path.Data" Value="{StaticResource openEnvelope}" />
+                                                            <Setter Property="Path.Height" Value="20" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=isReaded}" Value="false">
+                                                            <Setter Property="Path.Data" Value="{StaticResource closedEnvelope}" />
+                                                            <Setter Property="Path.Height" Value="15" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Path.Style>
+                                        </Path>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Row="1" x:Name="grid_messageDetails" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <DockPanel LastChildFill="True" Grid.Row="0" Margin="0 10 0 0"
+                                   Grid.ColumnSpan="4">
+                            <TextBlock x:Name="txt_messageDetails2" Text="messageDetails" Foreground="#737373" FontSize="10" VerticalAlignment="Center" Margin="5,5,5,5"/>
+                            <Separator Background="{StaticResource LightGrey}" VerticalAlignment="Center" Width="auto" />
+                        </DockPanel>
+
+                        <TextBlock
+                               Grid.Row="1" 
+                               x:Name="txt_messageTitleTitle" Text="title:"
+                               Foreground="{StaticResource MainColor}" Margin="10"
+                               FontWeight="Medium"
+                            />
+                        <TextBlock
+                     Grid.Row="1"   Grid.Column="1"
+                               x:Name="txt_itemCode"  Text="{Binding title, Mode=OneWay}"
+                               Foreground="#8C8C8C" Margin="0 10"
+                               />
+
+                        <TextBlock
+                               Grid.Row="2"  Grid.Column="0"
+                               x:Name="txt_dateTitle" Text="date:"
+                               Foreground="{StaticResource MainColor}" Margin="10"
+                               FontWeight="Medium"
+                            />
+                        <TextBlock
+                     Grid.Row="2"   Grid.Column="1"
+                               x:Name="txt_date"  Text="{Binding Path=updateDate, Converter={StaticResource dateFrameConverter}, Mode=OneWay}"
+                               Foreground="#8C8C8C" Margin="0 10"
+                               />
+
+
+                        <TextBlock
+                               Grid.Row="3" Grid.Column="0"
+                               x:Name="txt_userNameTitle" Text="userName:"
+                               Foreground="{StaticResource MainColor}" Margin="10"
+                               FontWeight="Medium"
+                            />
+                        <TextBlock
+                     Grid.Row="3"   Grid.Column="1"
+                               x:Name="txt_userName"  Text="{Binding msgCreatorName, Mode=OneWay}"
+                               Foreground="#8C8C8C" Margin="0 10"
+                               />
+                        
+                        <TextBlock
+                               Grid.Row="4"  Grid.Column="0"
+                               x:Name="txt_branchNameTitle" Text="branchName:"
+                               Foreground="{StaticResource MainColor}" Margin="10"
+                               FontWeight="Medium"
+                            />
+                        <TextBlock
+                     Grid.Row="4"   Grid.Column="1"
+                               x:Name="txt_branchName"  Text="{Binding branchCreatorName, Mode=OneWay}"
+                               Foreground="#8C8C8C" Margin="0 10"
+                               />
+                        
+                        <TextBlock 
+                               Grid.Row="1"  Grid.Column="2"
+                               x:Name="txt_msgContentTitle" Text="msgContent:"
+                               Foreground="{StaticResource MainColor}" Margin="10"
+                               FontWeight="Medium"
+                            />
+                        <ScrollViewer  
+                    Grid.Row="1"  Grid.Column="3" Grid.RowSpan="4" Margin="0 10 10 10"
+                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
+                            <TextBlock 
+                     Grid.Row="3"   Grid.Column="1" Grid.ColumnSpan="4"
+                           x:Name="txt_itemDetails"   Text="{Binding msgContent, Mode=OneWay}"
+                           TextWrapping="Wrap"
+                            HorizontalAlignment="Left"   
+                           Foreground="#8C8C8C" Margin="0"
+                           />
+                        </ScrollViewer>
+                        
+                        <Grid Grid.Row="5" Grid.ColumnSpan="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Separator Grid.ColumnSpan="2" Margin="10 5"
+                                Background="{StaticResource LightGrey}" VerticalAlignment="Center" Width="auto" />
+
+                            <Grid Grid.Row="1" Grid.Column="0">
+                            <TextBox x:Name="tb_msgContentReply" Grid.Row="8"  
+                                 Padding="10,0,5,5"     Margin="10,5,5,10"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 BorderThickness="0,0,0,2" materialDesign:HintAssist.Hint="msgContentReply..."    
+                                 Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8" 
+                                 BorderBrush="AliceBlue"  TextWrapping="Wrap" AcceptsReturn="True"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Center"  
+                                 materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                 MinHeight="70"  Grid.ColumnSpan="2" 
+                                 TextChanged="Tb_validateEmptyTextChange">
+                            </TextBox>
+                            <Path Fill="#E81123" Stretch="Fill" x:Name="p_errorMsgContentReply" Margin="15,12,15,5"
+                              HorizontalAlignment="Right"  Grid.Column="2"  Visibility="Collapsed"  
+                         VerticalAlignment="Top" Width="15"  Height="15"
+                              Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8 C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12 C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 L13,15 L13,17 Z">
+                                <Path.ToolTip>
+                                    <ToolTip x:Name="tt_error_msgContentReply" Style="{StaticResource ToolTipError}"/>
+                                </Path.ToolTip>
+                            </Path>
+                        </Grid>
+                            <Button x:Name="btn_reply" 
+                        Grid.Row="1" Grid.Column="1"
+                                    Height="70" Width="70" 
+                        Background="{StaticResource MainColor}" 
+                        BorderBrush="{x:Null}" Click="Btn_reply_Click"
+                        Margin="5 5 10 10"  Padding="0" >
+                                <StackPanel>
+                                    <Path x:Name="path_reply" Fill="{StaticResource White}" Stretch="Fill" Margin="5,0"
+                             HorizontalAlignment="Center" 
+                         VerticalAlignment="Center" Width="30" Height="22.5"
+                              Data="{StaticResource replyEnvelope}"/>
+                                    <TextBlock Text="reply" x:Name="txt_reply"
+                                       Foreground="{StaticResource White}"
+                                   HorizontalAlignment="Center"
+                              Grid.Column="1"      Margin="5,0"/>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+        
+    </Grid>
+
+</Window>
