@@ -1,0 +1,484 @@
+﻿<UserControl x:Class="POS.View.purchases.uc_purchaseOrder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:POS.View.purchases"
+             mc:Ignorable="d"  Tag="purchaseOrder"
+             xmlns:converters="clr-namespace:POS.converters"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded"
+             d:DesignHeight="700" d:DesignWidth="1000" Margin="0">
+        <Grid x:Name="grid_main" Margin="0,15,0,15"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition   Height="60" />
+                <RowDefinition Height="*"/>
+                <!--<RowDefinition Height="1.2*"/>-->
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border BorderThickness="0"  Height="auto"  Grid.Column="0"  Margin="10,0,0,0"
+                    CornerRadius="7" BorderBrush="Black" Background="#4E4E4E" Padding="0">
+                    <Button Grid.Column="8" BorderBrush="{x:Null}"     Margin="0" Height="auto" Click="Btn_items_Click"
+                    Background="{x:Null}" x:Name="btn_items" Padding="0"    >
+                        <StackPanel>
+                            <Path Fill="White" Stretch="Fill"  x:Name="path_itemsIcon"
+                         Height="30" Width="30"
+                           FlowDirection="LeftToRight" Data="{StaticResource Items}"  />
+                            <TextBlock Text="items" x:Name="txt_items" Foreground="White" 
+                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
+                                           HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+
+                <Border BorderThickness="0"  Height="auto"  Grid.Column="1"  Margin="10,0,5,0"
+                    CornerRadius="7" BorderBrush="Black" Background="White" Padding="0">
+                    <StackPanel  Orientation="Horizontal" Margin="10,0" >
+
+                    
+                    <Button Grid.Column="1" BorderBrush="{x:Null}"  
+                    Background="{x:Null}" x:Name="btn_newDraft" Padding="0" Margin="5,10,5,0" Height="auto"
+                    Click="Btn_newDraft_Click">
+                        <StackPanel>
+                            <Path Fill="#4E4E4E" Stretch="Fill" Height="30"  Width="30" x:Name="path_newDraft"
+                            
+                          Data="{StaticResource plusCircle}"  />
+                            <TextBlock Text="new Draft" x:Name="txt_newDraft" Foreground="#178DD2" 
+                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
+                                           HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <materialDesign:Badged VerticalAlignment="Center" Margin="5,10,5,0" 
+                      BadgeBackground="{StaticResource MainColorRed}"  BadgeForeground="White"  Name="md_draft">
+                        <Button Grid.Column="2" BorderBrush="{x:Null}" Padding="0"    Height="auto"
+                    Background="{x:Null}" x:Name="btn_drafts"  Click="Btn_draft_Click" >
+                            <StackPanel>
+                                <Path Fill="#4E4E4E" Stretch="Fill"  
+                          Width="30" Height="30"  
+                          Data="{StaticResource dolarsList}" />
+                                <TextBlock Text="drafts" x:Name="txt_drafts" Foreground="#178DD2" 
+                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
+                                           HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </materialDesign:Badged>
+
+                    <Border  DockPanel.Dock="Right"  Margin="7.5,10"   CornerRadius="0,0,0,0"  Width="2" BorderThickness="0" Background="#377EB8" />
+                    <materialDesign:Badged VerticalAlignment="Center" Margin="5,10,5,0"  
+                      BadgeBackground="{StaticResource MainColorRed}"  BadgeForeground="White"  Name="md_order">
+                        <Button Grid.Column="4" BorderBrush="{x:Null}" Padding="0"  Height="auto"
+                    Background="{x:Null}" x:Name="btn_purchaseOrder"  Click="Btn_purchaseOrder_Click"  >
+                            <StackPanel>
+                                <Path Fill="#4E4E4E" Stretch="Fill"  
+                           Width="30" Height="30"   FlowDirection="LeftToRight"
+                           Data="{StaticResource dolarsListCheck}" />
+                                <TextBlock Text="Order" x:Name="txt_purchaseOrder" Foreground="#178DD2" 
+                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
+                                           HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </materialDesign:Badged>
+                    <Border  x:Name="bdr_shortageInvoice" Visibility="Collapsed" Background="White" Margin="7.5,10"   CornerRadius="0,0,0,0"  
+                            Width="1" BorderThickness="0,0,1,0" BorderBrush="#377EB8" />
+                    <materialDesign:Badged VerticalAlignment="Center"   Margin="5,10,5,0"  Visibility="Collapsed"
+                      BadgeBackground="{StaticResource MainColorOrange}"  BadgeForeground="White" Name="md_shortage" Badge="">
+                        <Button Grid.Column="4" BorderBrush="{x:Null}" Padding="0"  Height="auto"
+                    Background="{x:Null}" x:Name="btn_shortageInvoice" Click="Btn_shortageInvoice_Click" Visibility="Collapsed">
+                            <StackPanel>
+                                <Path Fill="#4E4E4E" Stretch="Fill"  
+                           Width="30" Height="30"  
+                           Data="M97.86,65.37a2.29,2.29,0,1,1-4.58,0,2.29,2.29,0,0,1,4.58,0ZM135,79l.29,39.55a2,2,0,0,1-.95,1.74l-16.11,9.61a1.94,1.94,0,0,1-1.16.38h-.32l-41.85-4.68A2,2,0,0,1,73,123.68V97.48l-13.79,8.23a1.94,1.94,0,0,1-1.16.38h-.32l-41.85-4.68a2,2,0,0,1-1.86-2V59.24a2,2,0,0,1,1.17-1.82l21-9.25a2,2,0,0,1,1-.14L73,52.72V31.42A2,2,0,0,1,74.2,29.6l21-9.25a2,2,0,0,1,1-.14L132.52,25h.07a2,2,0,0,1,1.25.24A2,2,0,0,1,135,27l.29,39.55a2,2,0,0,1-.95,1.74L122,75.63,132.52,77h.07a2,2,0,0,1,1.25.24A2,2,0,0,1,135,79ZM23.15,58.19l8.57,1.09v0l11.13-6.6L37.33,52Zm33,8.13-15.65-2h0l-.58,16.92L33.61,77l-6.27,3.5,1.28-17.7L18,61.45V97.72L56.12,102ZM68.18,56l-12.91-1.7L43.8,60.83,57.72,62.6Zm4.24,37.32-.25-35.22L60.05,65.75l0,0v35Zm58.73-63L119,37.93l0,0V73l12.39-7.45ZM102.78,33l13.92,1.77,10.46-6.59-12.91-1.7ZM82.13,30.37l8.57,1.09v0l11.13-6.6-5.52-.7ZM76.94,69.9l38.16,4.29V38.5l-15.65-2h0v0l-14.53-2v.07l-8-1ZM90.7,83.5v0l11.13-6.6-5.52-.7L82.13,82.41ZM76.2,80.76l12.71-5.6L76.15,73.73Zm38.9,9.78-15.65-2h0l-.58,16.92-6.28-4.22-6.27,3.5L87.6,87,76.94,85.67v36.27l38.16,4.29Zm12.06-10.31-12.91-1.7-11.47,6.52,13.92,1.77Zm4.24,37.32-.25-35.22L119,90l0,0v35ZM99.28,40.39a7.65,7.65,0,0,0-7,.41,5.45,5.45,0,0,0-2.7,3.31c-.09.3-.12.62-.18.93v.42c0,.11,0,.21.05.31a3.13,3.13,0,0,0,.89,1.89,2.23,2.23,0,0,0,3.08.05,2.13,2.13,0,0,0-.06-3.05c-.21-.21-.45-.4-.68-.6a.88.88,0,0,1-.12-1.41,3.73,3.73,0,0,1,1.13-.93,4,4,0,0,1,5.74,2.72,7.22,7.22,0,0,1-.73,5.23c-.53.94-1.21,1.8-1.83,2.7a9.2,9.2,0,0,0-1.28,2.13,13.79,13.79,0,0,0-.6,4.77c0,.07.15.19.24.2s.46,0,.68,0,.28-.05.28-.27c0-.57.07-1.15.12-1.72a4.67,4.67,0,0,1,1.23-2.87c.29-.31.55-.63.85-.92.91-.88,1.84-1.74,2.75-2.62a6.06,6.06,0,0,0,1.9-3.28c.07-.39.12-.78.18-1.18v-.9c-.06-.35-.11-.7-.19-1A6.07,6.07,0,0,0,99.28,40.39Z"  />
+                                <TextBlock Text="shortage" x:Name="txt_shortageInvoice" Foreground="#178DD2" 
+                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
+                                           HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </materialDesign:Badged>
+                    <Border   x:Name="bdr_emailMessage" Visibility="Collapsed"   Margin="7.5,10"   CornerRadius="0,0,0,0"  Width="2" BorderThickness="0" Background="#377EB8" />
+                        <Button Grid.Column="1" DockPanel.Dock="Right" BorderBrush="{x:Null}" Padding="0"  Margin="5,10,5,0" Height="auto" 
+                    Background="{x:Null}" x:Name="btn_emailMessage" Click="Btn_emailMessage_Click" Visibility="Collapsed"   >
+                            <StackPanel>
+                                <Path Fill="#4E4E4E" Stretch="Fill"  
+                       Height="30" Width="30"
+                           Data="M0,151c0.4-1.4,0.8-2.8,1.3-4.1c1.8-4.6,5.5-6.5,10.2-4.9c1.7,0.6,3.3,1.5,4.8,2.4c28,17.6,55.9,35.3,83.9,52.8
+	c8.1,5.1,11.2,13.7,6.9,22.5c-7.4,15.2-15.4,30.1-23.1,45.1c-1.9,3.6-3.8,7.2-5.3,11c-1.2,2.8-2.1,6.1,0.7,8.6
+	c2.8,2.5,5.9,1.1,8.6-0.3c2.1-1.1,4.2-2.6,5.9-4.3c11.8-12.3,23.4-24.6,35.2-37c5.3-5.6,11.2-10.5,19.1-11.9
+	c4.5-0.8,8.8-0.5,12.7,2.1c15.5,10.2,31.2,20.3,46.6,30.7c12.5,8.5,25.9,9,39.4,4.1c7.7-2.8,14.8-7.6,21.8-11.9
+	c32.8-20.1,65.7-40.1,98.3-60.5c25-15.7,49.7-32.1,74.6-48.1c3.3-2.1,6.8-3.9,10.5-5.1c6-1.9,9.9,1,10,7.3c0.1,4.2,0.1,8.5,0.1,12.8
+	c0,37.1,0,74.2,0,111.2c0,1.1,0,2.2,0,3.9c-1.2-1-2.1-1.6-2.9-2.3c-15.7-12.7-31.6-25.2-48.7-36.1c-3.8-2.4-7.7-4.4-12.2-4.8
+	c-7.6-0.5-13.4,3-17.9,8.9c-5.6,7.4-8.9,15.9-10.1,25c-1.1,7.5-1.1,15.2-1.7,22.8c-0.1,2.1-0.4,4.2-0.6,6.6c-4.7,0-9.3,0-13.9,0
+	c-13.6,0-27.2,0.3-40.8-0.2c-21.7-0.9-30.7,13.7-33.4,27.4c-1.3,6.7-1.8,13.7-2,20.5c-0.3,13-0.1,26-0.1,39c0,2,0.2,4.1,0.4,6.4
+	c-1,0-1.9,0-2.8,0c-72.8-0.2-145.6-0.3-218.3-0.5c-10.1,0-20-1.2-29.4-5.3C12,378.2,3.3,366.3,1,349.6c-0.3-2.1-0.7-4.2-1-6.3
+	C0,279.3,0,215.1,0,151z M500,360.2c-1.1-4.8-3.4-8.7-7.4-11.8c-23.5-18.5-46.9-37.2-70.3-55.8c-4.2-3.3-8.4-6.7-12.9-9.6
+	c-5.2-3.4-8.2-2-9.3,4.2c-0.4,2.4-0.5,4.9-0.5,7.4c-0.1,7.7,0.1,15.5-0.2,23.2c-0.2,6.9-3.5,10.6-10.3,11.9c-3,0.6-6.1,0.8-9.1,0.8
+	c-19,0-37.9-0.6-56.9-0.2c-12.3,0.3-14.9,3.1-15.4,15.3c-0.4,9.8-0.1,19.6-0.1,29.3c0,4.8,2.1,8.7,5.8,11.7
+	c4.6,3.7,9.8,5.6,15.7,5.6c18.1-0.1,36.2,0,54.3,0c7.7,0,12.7,3.5,15,10.9c0.9,3,1.2,6.2,1.3,9.3c0.2,6.6,0,13.3,0.1,19.9
+	c0,3.1,0.2,6.3,0.7,9.4c0.8,4.6,2.6,5.5,6.7,3.2c3.4-1.9,6.7-4.1,9.7-6.5c25-20.1,49.9-40.2,74.9-60.3c3.8-3.1,7.1-6.2,8.1-11.2
+	C500,364.6,500,362.4,500,360.2z M231.4,54.1c-2.4,0-4.8,0-7.1,0c-52.5,0-105.1-0.1-157.6-0.1c-13.9,0-27.9-0.2-41.8,0.2
+	C12.8,54.4,5.1,59.8,2.2,69.9C1,74.2,1.1,78.8,0.5,83.2c-0.9,7,2.3,11.9,8,15.5c0.7,0.4,1.4,0.9,2.2,1.3c22,13.2,44,26.4,66,39.5
+	c45.1,27,90.2,54,135.4,81c4.9,2.9,10.3,5.2,15.6,7.5c1.6,0.7,3.9,0.9,5.4,0.3c7.3-3,14.8-5.8,21.5-9.8
+	c65.3-39,130.5-78.3,195.7-117.6c3-1.8,5.7-4.2,8.6-6.3c2.6-1.9,3.8-4.5,3.5-7.8c-0.4-4.8-0.4-9.7-1.3-14.4c-1.7-9-7-14.9-16.3-16.8
+	c-3.1-0.6-6.2-1.1-9.3-1.1c-30-0.2-60-0.3-90-0.3c-38,0-76,0-114,0C231.4,54.2,231.4,54.1,231.4,54.1z M250,0C250,0,250,0,250,0
+	C250,0,250,0,250,0C250,0,250,0,250,0C250,0,250,0,250,0z M250,500C250,500,250,500,250,500C250,500,250,500,250,500
+	C250,500,250,500,250,500C250,500,250,500,250,500z"  />
+                                <TextBlock Text="emailMessage" x:Name="txt_emailMessage" Foreground="#178DD2" 
+                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
+                                           HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+            </Border>
+        </Grid>
+
+        <Border BorderThickness="0" Grid.ColumnSpan="2"  Grid.Column="1"  
+                    CornerRadius="7" BorderBrush="Black" Background="White" Padding="0" Margin="5,0,10,0">
+                <DockPanel   Margin="10,0" LastChildFill="False">
+                    <materialDesign:Badged VerticalAlignment="Center" Margin="5,10,5,0"  DockPanel.Dock="Right" 
+                      BadgeBackground="{StaticResource MainColorRed}"  BadgeForeground="White"  Name="md_docImage">
+                        <Button Grid.Column="5" BorderBrush="{x:Null}" Padding="0" Height="auto"
+                    Background="{x:Null}" x:Name="btn_invoiceImages" Click="Btn_invoiceImage_Click"  >
+                            <StackPanel>
+                                <Path Fill="#4E4E4E" Stretch="Fill"  
+                         Height="30" Width="30"
+                           Data="{StaticResource image}"  />
+                                <TextBlock Text="Images" x:Name="txt_invoiceImages" Foreground="#178DD2" 
+                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
+                                           HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </materialDesign:Badged>
+                    <Border  DockPanel.Dock="Right"  Margin="7.5,10"  CornerRadius="0,0,0,0"  Width="2" BorderThickness="0" Background="#377EB8" />
+
+
+                    <Button DockPanel.Dock="Right" Grid.Column="3" BorderBrush="{x:Null}" Padding="0"  Margin="5,10,5,0" Height="auto"
+                    Background="{x:Null}" x:Name="btn_preview"  Click="Btn_preview_Click"  >
+                        <StackPanel>
+                            <Path Fill="#4E4E4E" Stretch="Fill"  
+                        Height="30" Width="30" 
+                           Data="{StaticResource preview}"  />
+                            <TextBlock Text="preview" x:Name="txt_preview" Foreground="#178DD2" 
+                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
+                                           HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="2" DockPanel.Dock="Right" BorderBrush="{x:Null}" Padding="0"  Margin="5,10,5,0" Height="auto"
+                    Background="{x:Null}" x:Name="btn_pdf" Click="Btn_pdf_Click"   >
+                        <StackPanel>
+                            <Path Fill="#4E4E4E" Stretch="Fill"  
+                         Height="30" Width="25" 
+                           Data="{StaticResource pdf}" />
+                            <TextBlock Text="pdf" x:Name="txt_pdf" Foreground="#178DD2" 
+                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
+                                           HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="1" DockPanel.Dock="Right" BorderBrush="{x:Null}" Padding="0" Margin="5,10,5,0" Height="auto"
+                    Background="{x:Null}" x:Name="btn_printInvoice" Click="btn_printInvoice_Click"  >
+                        <StackPanel>
+                            <Path Fill="#4E4E4E" Stretch="Fill"  
+                       Height="30" Width="30"
+                           Data="{StaticResource printer}" />
+                            <TextBlock Text="print" x:Name="txt_printInvoice" Foreground="#178DD2" 
+                                           FontWeight="Regular" FontSize="8" TextAlignment="Center" Width="35"
+                                           HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+           
+
+                </DockPanel>
+            </Border>
+            <Grid  Grid.Column="2" Grid.Row="1" Margin="0,5,0,5">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="1*" MinHeight="200"/>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Border  x:Name="bdr_paymentDetails" BorderThickness="0"   Grid.Column="0" Grid.Row="0"    Margin="5,10,10,10"
+                    CornerRadius="7" BorderBrush="Black" Background="White" Padding="0">
+                    <ScrollViewer>
+                        <StackPanel   Margin="0,10,0,10" >
+
+                            <!--#region  Barcode-->
+                            <Grid  Margin="5" Grid.Row="3"   >
+                                <TextBox x:Name="tb_barcode"  Text="{Binding discount, Mode=OneWay}"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Grid.Row="2" Padding="10,0,5,0"
+                                materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                MaxLength="20" 
+                                BorderThickness="1"  materialDesign:HintAssist.Hint="Barcode..."  
+                                Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8"
+                                BorderBrush="#f8f8f8"
+                                Grid.Column="1"  Height="40" KeyDown="Tb_barcode_KeyDown" />
+                                <Path Fill="#E81123" Stretch="Fill" Margin="5,5,25,5"
+                                            HorizontalAlignment="Right" Grid.Column="2"  Visibility="Collapsed"   
+                                            VerticalAlignment="Center" Width="15"  Height="15"
+                                            Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8 C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12 C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 L13,15 L13,17 Z">
+                                    <Path.ToolTip>
+                                        <ToolTip  Content="Name Not Validate"  Style="{StaticResource ToolTipError}"/>
+                                    </Path.ToolTip>
+                                </Path>
+                            </Grid>
+                            <!--#endregion-->
+                           <!--#region  Vendor-->
+                        <TextBlock  Text="Vendor" x:Name="txt_vendor" Foreground="#178DD2" 
+                                                FontWeight="Bold" FontSize="12"  
+                                       HorizontalAlignment="Left" Margin="20,5,5,5"/>
+
+                        <Grid  x:Name="grid_vendor" Visibility="Visible"   >
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.ColumnSpan="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid  Grid.Row="0" >
+                                    <ComboBox x:Name="cb_vendor"  Grid.Row="1"
+                                  Padding="10,0,5,0"  TextBlock.Foreground="#4E4E4E"
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                  materialDesign:HintAssist.Hint="Vendor..."  
+                                  TextBlock.FontSize="12"   Background="#f8f8f8" 
+                                  Grid.Column="1" Height="40"   Margin="5,5"
+                                  BorderBrush="#737373" BorderThickness="0"
+                                  KeyUp="Cb_vendor_KeyUp"  
+                                  LostFocus="input_LostFocus" 
+                                   SelectionChanged="Cb_vendor_SelectionChanged"
+                                   IsTextSearchEnabled ="False"
+                                          IsEditable="True"
+                                          StaysOpenOnEdit="true"/>
+                                    <Path Fill="#E81123" Stretch="Fill" Margin="5,5,25,5"
+                                          Name="p_errorVendor"
+                              HorizontalAlignment="Right" Grid.Column="2"  Visibility="Collapsed"   
+                         VerticalAlignment="Center" Width="15"  Height="15"
+                              Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52
+                                          6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 
+                                          17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8
+                                          C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12
+                                          C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 
+                                          L13,15 L13,17 Z">
+                                        <Path.ToolTip>
+                                            <ToolTip   x:Name="tt_errorVendor"
+                                                      Style="{StaticResource ToolTipError}"/>
+                                        </Path.ToolTip>
+                                    </Path>
+
+                                </Grid>
+                                <Button Grid.Column="1"  Padding="0"    
+                                Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Right" 
+                                            x:Name="btn_addVendor" Click="Btn_addVendor_Click"
+                                Margin="5,1" IsEnabled="true">
+                                    <Path Fill="#4E4E4E" Stretch="Fill"  
+                    Width="27.5" Height="27.5"
+                           Data="M275.8,467c-14.1-21.9-21.7-47.5-21.7-74.4c0-6.3,0.4-12.4,1.2-18.5H121.6v0c-3.4,0-6.8,0-10.3,0c0-15.9,0-31.2,0-47.1
+	c2.5,0,4.7,0,6.8,0c50.8,0,101.6,0,152.5,0.1c6.2-11.4,14-22,23.5-31.4c5.4-5.4,11.3-10.4,17.5-14.8c-16.8,0-33.5,0-50.2,0
+	c-50.2,0-100.2,0-150.3,0c0-15.8,0-31.1,0-47.1c2.7,0,4.8,0,7.1,0c89.8,0,179.7,0,269.5,0.1c0.6,0,1.2,0,1.8-0.1c0.6,0,1.2,0,1.9,0
+	c0,7.4,0,14.7,0,22c16,0,31.6,2.8,46.2,7.9c0-29,0-58.8,0-82.2c0.2-12.2,0.2-24.4-0.1-36.7c0-2.3-1.2-5.2-2.9-6.9
+	c-44.6-44.8-89.2-89.4-134-134c-1.5-1.5-4.2-2.7-6.4-2.7c-61.2-0.1-122.3-0.2-183.5,0c-18.4,0.1-31.8,9.3-40.7,25.3
+	c-4.6,8.2-5.1,17.1-5.1,26.2c0,92.2,0,184.3,0,276.5c0,30.8-0.5,61.7,0.3,92.5c0.8,27.1,20.6,45.2,47.7,45.3c2.9,0,5.8,0,8.8,0v0
+	H275.8z M274.2,38c41.8,41.9,84.1,84.4,125.4,125.9c-40.3,0-82.7,0-125.4,0C274.2,121.4,274.2,79.2,274.2,38z M391,284.1
+	c-60.5,0-108.5,48-108.5,108.5c0,60.4,48,108.5,108.5,108.5c60.4,0,108.5-48.1,108.5-108.5C499.5,332.2,451.4,284.1,391,284.1z
+	 M453,409.7h-45v45h-35.6v-45h-45V374h45v-45h37.2v45H453V409.7z M0,250C0,250,0,250,0,250C0,250,0,250,0,250C0,250,0,250,0,250
+	C0,250,0,250,0,250z" />
+                                </Button>
+                                <Button Grid.Column="2"  Padding="0" Width="25"  
+                                Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Right" x:Name="btn_updateVendor" Click="Btn_updateVendor_Click"
+                                Margin="5,1" IsEnabled="false">
+                                    <materialDesign:PackIcon Foreground="#4E4E4E" Kind="FileDocumentEdit"  
+                                  HorizontalAlignment="Center" Grid.Column="0"   
+                             VerticalAlignment="Center" Width="30" Height="30"/>
+                                </Button>
+                                <Button x:Name="btn_clear" Grid.Row="3" Grid.Column="3" Padding="0"
+                                Background="{x:Null}" BorderBrush="{x:Null}" Click="Btn_clear_Click"
+                                Margin="5,1"   ToolTip="clear">
+                                    <materialDesign:PackIcon Foreground="#178DD2" Kind="RefreshCircle"  
+                                HorizontalAlignment="Center" Grid.Column="0"  
+                                VerticalAlignment="Center" Width="30" Height="30"/>
+                                </Button>
+
+                            </Grid>
+                            <Grid Grid.Row="1"  >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="tb_note"  Text="{Binding notes, Mode=OneWay}"
+                                    Grid.Row="2" Padding="10,0,5,0"  
+                                    materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    BorderThickness="1"  materialDesign:HintAssist.Hint="Note..."  
+                                    Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8"
+                                    BorderBrush="#f8f8f8" TextChanged="Tb_textBox_TextChanged"
+                                    Grid.Column="1"  Height="70"   Margin="5,5" TextWrapping="Wrap"/>
+                                <Path Fill="#E81123" Stretch="Fill" Margin="5,5,15,5"
+                              HorizontalAlignment="Right" Grid.Column="2"  Visibility="Collapsed"   
+                         VerticalAlignment="Center" Width="15"  Height="15"
+                              Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8 C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12 C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 L13,15 L13,17 Z">
+                                    <Path.ToolTip>
+                                        <ToolTip  Content="Name Not Validate"  Style="{StaticResource ToolTipError}"/>
+                                    </Path.ToolTip>
+                                </Path>
+                            </Grid>
+                        </Grid>
+
+                        <!--#endregion-->
+                        <Separator Margin="5,2.5" Grid.Row="3"  Background="#DFDFDF" VerticalAlignment="Center" Width="auto" />
+                        <StackPanel x:Name="sp_Approved" Visibility="Visible" Orientation="Horizontal" Grid.Row="3"  Margin="5,0,0,0">
+                            <TextBlock  x:Name="txt_isApproved"
+                               Margin="5,5,15,5" Text="Approved" Foreground="#6e6e6e"
+                            HorizontalAlignment="Left" VerticalAlignment="Center"
+                                  FontSize="12"/>
+                            <ToggleButton Grid.Column="1"  x:Name="tgl_ActiveOffer"   IsChecked="False"
+                                 VerticalAlignment="Center" Padding="10,15,5,5"
+                                 Margin="0" Height="13" Width="28" Checked="Tgl_ActiveOffer_Checked"
+                                   Unchecked="Tgl_ActiveOffer_Unchecked" />
+                        </StackPanel>
+
+                    </StackPanel>
+                    </ScrollViewer>
+
+                </Border>
+
+                <Border BorderThickness="0"  Grid.Column="0" Grid.Row="2"  Height="50"   Margin="5,5,10,10"
+                    CornerRadius="7" BorderBrush="Black" Background="{StaticResource MainColorBlue}" Padding="0">
+                    <Button Content="Save" Height="auto" BorderBrush="{x:Null}"  FontSize="22" FontWeight="Bold" x:Name="btn_save"
+                Background="{x:Null}" Click="Btn_save_Click" IsEnabled="True" />
+                </Border>
+
+            </Grid>
+
+            <Grid Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Margin="0,5,0,5">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Border BorderThickness="0"   Grid.Column="0" Grid.Row="0"    Margin="10,10,5,5"
+                    CornerRadius="7" BorderBrush="Black" Background="White" Padding="0">
+                    <Grid   Margin="0" >
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                        <TextBlock Text="Purchases Order" x:Name="txt_payInvoice" Foreground="#178DD2" FontWeight="Bold" FontSize="18"  
+                                     VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left" Margin="10,10,5,5"/>
+                        <TextBlock Grid.Row="0"  Text="" x:Name="txt_invNumber"  Foreground="#4E4E4E" 
+                                   FontWeight="SemiBold" FontSize="14"  
+                                  VerticalAlignment="Center"  
+                                       HorizontalAlignment="Right" Margin="5,10,10,5"/>
+                    <DataGrid x:Name="dg_billDetails"  Margin="5,5" Grid.Row="1"   Grid.ColumnSpan="2"    Background="White"
+                      materialDesign:DataGridAssist.CornerRadius="5" Visibility="Visible"
+                         IsReadOnly="False" CanUserAddRows="False"   BeginningEdit="Dg_billDetails_BeginningEdit"
+                        AutoGenerateColumns="False" CellEditEnding="Dg_billDetails_CellEditEnding"
+                                  CanUserReorderColumns="False"
+                        ColumnWidth="SizeToHeader"   CanUserSortColumns="False" PreviewKeyDown="Dg_billDetails_PreviewKeyDown"
+                                  VirtualizingStackPanel.IsVirtualizing="False"  
+                                  EnableRowVirtualization="True" EnableColumnVirtualization="True">
+                            <DataGrid.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"></SolidColorBrush>
+                                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#e7f3fa" />
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="0 0 1 0"/>
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns >
+                                <DataGridTemplateColumn Width="20" Header="" IsReadOnly="True" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Margin="-10"   Click="deleteRowFromInvoiceItems"
+                                                   Padding="0" ToolTip="Delete" 
+                          Background="{x:Null}" BorderBrush="{x:Null}">
+                                                <materialDesign:PackIcon Foreground="#178DD2" Kind="MinusThick"  
+                              HorizontalAlignment="Center" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="17" Height="17"/>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn IsReadOnly="True" Header="Num"  Binding="{Binding Path=ID}"/>
+                                <DataGridTextColumn IsReadOnly="True"  Width="*"   Header="Item" Binding="{Binding Path=Product}"/>
+                                <DataGridTemplateColumn Header="Unit"  Width="*" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox  DataContextChanged="Cbm_unitItemDetails_DataContextChanged" 
+                                                SelectionChanged="Cbm_unitItemDetails_SelectionChanged" 
+                                                              Tag="cbm_unitItemDetails" 
+                                                              x:Name="cbm_unitItemDetails"
+                                                              ItemsSource="{Binding itemId,Converter={StaticResource unitItemsListConverter}}"
+                                                              DisplayMemberPath="mainUnit" 
+                                                              SelectedValuePath="itemUnitId"
+                                                              SelectedItem="{Binding Unit}"
+                                                       IsEnabled="{Binding Path=IsEnabled, ElementName=cbm_unitItemDetails1}"/>
+                                                
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn  Header="Amount"  Width="*"  Binding="{Binding Path=Count}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Separator Margin="5,0" Grid.Row="2"  Background="#DFDFDF" VerticalAlignment="Center" Width="auto" />
+                    <StackPanel Grid.Row="3"  Orientation="Horizontal" Margin="5">
+                            <Button Grid.Column="1" BorderBrush="{x:Null}" Visibility="Collapsed"   
+                        Background="{x:Null}" x:Name="btn_previous" Padding="0"  
+                                    Margin="5,0,5,0" Height="auto" Click="Btn_previous_Click">
+                                <StackPanel>
+                                    <Path Fill="{StaticResource MainColorBlue}" Stretch="Fill" Height="25" Width="25" x:Name="path_previous"
+                          Data="M275,150.15a122.58,122.58,0,0,0-16.83-62.72c-11.12-19.21-26.44-34.22-45.37-45.62a125.71,125.71,0,0,0-125.6,0A122.43,122.43,0,0,0,41.83,87.42a125.3,125.3,0,0,0,0,125.45A123.88,123.88,0,0,0,87.2,258.19C106.43,269.6,127.16,275,150,275a124.83,124.83,0,0,0,108.17-62.12C269.59,193.67,275,173,275,150.15Zm-82.93,50.42a10,10,0,0,1,3,7.5,10.44,10.44,0,0,1-3,7.51l-16.53,16.8a10.16,10.16,0,0,1-14.42,0L88.1,158a10.87,10.87,0,0,1,0-15l73-74.73a10.16,10.16,0,0,1,14.42,0L192.07,85a10,10,0,0,1,3,7.51,10.41,10.41,0,0,1-3,7.5l-49.58,50.12Z">
+                                        <Path.ToolTip>
+                                            <ToolTip x:Name="tt_error_previous" />
+                                        </Path.ToolTip>
+                                    </Path>
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Column="1" BorderBrush="{x:Null}" Visibility="Collapsed"  
+                        Background="{x:Null}" x:Name="btn_next" Padding="0" 
+                                    Margin="5,0,5,0" Height="auto" Click="Btn_next_Click">
+                                <StackPanel>
+                                    <Path Fill="{StaticResource MainColorBlue}" Stretch="Fill" Height="25" Width="25" 
+                                          x:Name="path_next"
+                          Data="M25.2,150c0,22.8,5.7,43.5,16.8,62.7s26.4,34.2,45.3,45.6c19.2,11.1,39.9,16.8,62.7,16.8s43.5-5.7,62.7-16.8
+	                        c19.2-11.1,34.2-26.4,45.3-45.6c11.1-19.2,16.8-39.9,16.8-62.7s-5.7-43.5-16.8-62.7c-11.1-19.2-26.4-34.2-45.3-45.3
+	                        c-19.2-11.4-39.9-16.8-62.7-16.8S106.5,30.9,87.3,42S53.1,68.4,42,87.3C30.6,106.5,25.2,127.2,25.2,150z M108,99.6
+	                        c-2.1-2.1-3-4.5-3-7.5c0-2.7,0.9-5.4,3-7.5l16.5-16.8c2.1-2.1,4.5-3,7.2-3c2.7,0,5.1,0.9,7.2,3l72.9,74.4c2.1,2.1,3,4.5,3,7.5
+	                        s-0.9,5.4-3,7.5l-72.9,74.7c-2.1,2.1-4.5,3-7.2,3c-2.7,0-5.1-0.9-7.2-3L108,215.1c-2.1-2.1-3-4.5-3-7.5c0-2.7,0.9-5.4,3-7.5
+	                        l49.5-50.1L108,99.6z">
+                                        <Path.ToolTip>
+                                            <ToolTip x:Name="tt_error_next"  />
+                                        </Path.ToolTip>
+                                    </Path>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Grid Grid.Row="2" Margin="0">
+                    <Border BorderThickness="0"  Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="2"   Height="50" Margin="10,10,5,10"
+                    CornerRadius="7" BorderBrush="Black" Background="White" Padding="0" x:Name="brd_total">
+                        <StackPanel Orientation="Horizontal" Margin="5,0" VerticalAlignment="Center" >
+
+                            <TextBlock Text="Count" x:Name="tb_count" Foreground="{StaticResource MainColorBlue}" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                               Margin="2,0,5,0" FontSize="22"/>
+                            <TextBlock  Grid.Column="1" Margin="5,0,0,0" FontWeight="Bold" FontSize="18"  VerticalAlignment="Center"
+                                   TextAlignment="Center" Name="tb_total" Foreground="#4E4E4E" HorizontalAlignment="Right" 
+                                      Text="0"          />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+</UserControl>
