@@ -1,0 +1,265 @@
+﻿<Window x:Class="POS.View.windows.wd_uploadImage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS.View.windows"
+        mc:Ignorable="d" KeyDown="HandleKeyPress"
+        Title="SC Commerce"        
+           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         WindowStyle="None" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" Margin="0"
+         Height="500" Width="500" Background="Transparent" AllowsTransparency="True"
+        Loaded="Window_Loaded" MouseDown="Window_MouseDown">
+    <Grid Grid.Column="1" Grid.Row="1" x:Name="grid_main" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid    >
+            <Border  BorderThickness="0" Grid.Row="0" 
+                    CornerRadius="7,7,0,0"  Background="#178DD2">
+                <Grid>
+
+                    <Button    IsCancel="true"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" 
+                             BorderBrush="{x:Null}"  Foreground="White" Margin="7.5,0"  x:Name="btn_colse" Click="Btn_colse_Click"
+                             FontWeight="SemiBold" Width="24" Padding="0" ToolTip="Close"  FontSize="14">
+                        <materialDesign:PackIcon Foreground="White" Kind="Close" 
+                                         Width="20" Height="20"/>
+                    </Button>
+                    <Grid Height="30" HorizontalAlignment="Center"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Path Fill="White" Stretch="Fill" Margin="5,0"
+                              HorizontalAlignment="Right" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="20" Height="20"
+                              Data="{StaticResource image}"/>
+                        <TextBlock Text="Image" x:Name="txt_image" Foreground="White" 
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Grid.Column="1"      Margin="5,0"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border BorderThickness="1,0,1,1"  Grid.Row="1"
+                    CornerRadius="0,0,7,7" BorderBrush="#999999"  Background="White">
+            <Grid  Margin="5" x:Name="grid_mainGrid"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="1.5*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" x:Name="brd_lstImages" Margin="10" Grid.ColumnSpan="1"    BorderBrush="#999999" BorderThickness="1">
+                    <ListView x:Name="lst_images" 
+                    SelectionChanged="Lst_images_SelectionChanged" />
+                </Border>
+                <Button  Width="{Binding Path=ActualHeight, ElementName=brd_lstImages}"
+                         Height="{Binding Path=ActualHeight, ElementName=brd_lstImages}"
+                    Grid.Row="0" Grid.Column="1"   Grid.ColumnSpan="2" FlowDirection="LeftToRight"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="img_upload"  
+                                 BorderBrush="{x:Null}" materialDesign:ButtonAssist.CornerRadius="5"  
+                                  >
+                    <Button.Background>
+                        <ImageBrush Stretch="Uniform"  x:Name="IMG_customer" 
+                                            ImageSource="/pic/no-image-icon-512x512.png"   />
+                    </Button.Background>
+                </Button>
+                <!--#region name-->
+                <TextBox  Grid.Row="1" Grid.Column="0"   Grid.ColumnSpan="3" x:Name="tb_name"  Text="{Binding name, Mode=OneWay}" Padding="10,0,5,0"   
+                          BorderThickness="0,0,0,2"  materialDesign:HintAssist.Hint="Name..."
+                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                          Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8"
+                          BorderBrush="AliceBlue" TabIndex="0"
+                          TextChanged="Tb_name_TextChanged" LostFocus="Tb_name_LostFocus"
+                          MaxLength="20" materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                          Height="40"  Margin="10,5,10,5"   >
+                    <TextBox.ToolTip>
+                        <ToolTip x:Name="tt_name" Content="Name"
+                                              Placement="left" 
+                                              HorizontalOffset="35"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="20"/>
+                    </TextBox.ToolTip>
+                </TextBox>
+                <Path Grid.Row="1" Grid.Column="0"   Grid.ColumnSpan="3"  Fill="#E81123" Stretch="Fill" Margin="5,5,15,5" x:Name="p_errorName"
+                                  HorizontalAlignment="Right"   Visibility="Collapsed" 
+                                  VerticalAlignment="Center" Width="15"  Height="15"
+                                  Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8 C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12 C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 L13,15 L13,17 Z">
+                    <Path.ToolTip>
+                        <ToolTip  x:Name="tt_errorName"  Content="Name Not Validate"  Style="{StaticResource ToolTipError}"/>
+                    </Path.ToolTip>
+                </Path>
+                <!--#endregion-->
+                <!--#region notes-->
+                <TextBox Grid.Row="2" Grid.Column="0"   Grid.ColumnSpan="3"  x:Name="tb_notes"  Text="{Binding notes, Mode=OneWay}" 
+                                 Padding="10,0,5,5"   TabIndex="9" Margin="10,5,10,5"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 BorderThickness="0,0,0,2" materialDesign:HintAssist.Hint="Note..."    
+                                 Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8" 
+                                 BorderBrush="AliceBlue"  TextWrapping="Wrap" AcceptsReturn="True"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Center"  
+                                 materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                 MinHeight="70"    >
+                    <TextBox.ToolTip>
+                        <ToolTip x:Name="tt_notes" Content="Notes"
+                                              Placement="left" 
+                                              HorizontalOffset="35"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="20"/>
+                    </TextBox.ToolTip>
+                </TextBox>
+                <Path Grid.Row="2" Grid.Column="0"   Grid.ColumnSpan="3" Fill="#E81123" Stretch="Fill" Margin="15,12,15,5"
+                              HorizontalAlignment="Right"     Visibility="Collapsed"  
+                         VerticalAlignment="Top" Width="15"   Height="15"
+                              Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8 C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12 C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 L13,15 L13,17 Z">
+                    <Path.ToolTip>
+                        <ToolTip x:Name="tt_error_note" Content="Name Not Validate"  Style="{StaticResource ToolTipError}"/>
+                    </Path.ToolTip>
+                </Path>
+                <!--#endregion-->
+                <Line Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="4" Stretch="Fill" Stroke="#DFDFDF"  X2="1"  Margin="2.5"
+                          VerticalAlignment="Bottom"/>
+                <Grid Grid.Row="5" Grid.ColumnSpan="3" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" BorderBrush="{x:Null}" Padding="0" Margin="10,0" Height="auto"
+                    Background="{x:Null}" x:Name="btn_file"  Click="Img_upload_Click"   >
+                        <Path Fill="#4E4E4E" Stretch="Fill"  
+                           Width="35" Height="35" FlowDirection="LeftToRight"
+                           Data="{StaticResource imageFile}"  >
+                            <Path.ToolTip>
+                                <ToolTip x:Name="tt_file" Content="File"
+                                              Placement="left" 
+                                              HorizontalOffset="10"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="-35"/>
+                            </Path.ToolTip>
+                        </Path>
+                    </Button>
+                    <Button Grid.Column="1" BorderBrush="{x:Null}" Padding="0" Margin="5,0" Height="auto"
+                        Background="{x:Null}" x:Name="btn_scanner" Click="Btn_scan_Click" >
+                        <Path Fill="#4E4E4E" Stretch="Fill"   
+                              Width="35" Height="35"
+                           Data="{StaticResource scanner}"  >
+                            <Path.ToolTip>
+                                <ToolTip x:Name="tt_scanner" Content="Scanner"
+                                              Placement="left" 
+                                              HorizontalOffset="10"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="-35"/>
+                            </Path.ToolTip>
+                        </Path>
+                    </Button>
+                    
+                    <Button Grid.Column="2" BorderBrush="{x:Null}" Padding="0" Margin="5,0"  Height="auto"
+                    Background="{x:Null}" x:Name="btn_preview" Click="Btn_preview_Click"   >
+                        <Path Fill="#4E4E4E" Stretch="Fill"   FlowDirection="LeftToRight"
+                              Width="35" Height="35"
+                           Data="{StaticResource preview}"  >
+                            <Path.ToolTip>
+                                <ToolTip x:Name="tt_preview" Content="Preview"
+                                              Placement="left" 
+                                              HorizontalOffset="10"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="-35"/>
+                            </Path.ToolTip>
+                        </Path>
+                    </Button>
+                    <Button Grid.Column="3" BorderBrush="{x:Null}" Padding="0" Margin="5,0" Height="auto"
+                    Background="{x:Null}" x:Name="btn_pdf" Click="Btn_pdf_Click"   >
+                        <Path Fill="#4E4E4E" Stretch="Fill"   FlowDirection="LeftToRight"
+                              Width="35" Height="35" 
+                           Data="{StaticResource pdf}"  >
+                            <Path.ToolTip>
+                                <ToolTip x:Name="tt_pdf" Content="PDF"
+                                              Placement="left" 
+                                              HorizontalOffset="10"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="-35"/>
+                            </Path.ToolTip>
+                        </Path>
+                    </Button>
+                    <Button Grid.Column="4" BorderBrush="{x:Null}" Padding="0" Margin="5,0" Height="auto"
+                    Background="{x:Null}" x:Name="btn_print" Click="Btn_print_Click"   >
+                        <Path Fill="#4E4E4E" Stretch="Fill"  
+                              Width="35" Height="35"
+                           Data="{StaticResource printer}"  >
+                            <Path.ToolTip>
+                                <ToolTip x:Name="tt_printInvoice" Content="Print"
+                                              Placement="left" 
+                                              HorizontalOffset="10"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="-35"/>
+                            </Path.ToolTip>
+                        </Path>
+                    </Button>
+                    <Button Grid.Column="5" BorderBrush="{x:Null}" Padding="0" Margin="5,0" Height="auto"
+                        Background="{x:Null}" x:Name="btn_delete"  Click="Btn_delete_Click"  >
+                        <Path Fill="#4E4E4E" Stretch="Fill"  
+                             Width="35" Height="35"
+                           Data="{StaticResource delete}"  >
+                            <Path.ToolTip>
+                                <ToolTip x:Name="tt_delete" Content="Delete"
+                                              Placement="left" 
+                                              HorizontalOffset="10"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="-35"/>
+                            </Path.ToolTip>
+                        </Path>
+                    </Button>
+                    <Button Grid.Column="6" BorderBrush="{x:Null}" Padding="0" Margin="5,0" Height="auto"
+                    Background="{x:Null}" x:Name="btn_update"   Click="Btn_update_Click" >
+                        <Path Fill="#4E4E4E" Stretch="Fill"  
+                             Width="35" Height="35"
+                           Data="{StaticResource updateFile}"  >
+                            <Path.ToolTip>
+                                <ToolTip x:Name="tt_update" Content="Update"
+                                              Placement="left" 
+                                              HorizontalOffset="10"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="-35"/>
+                            </Path.ToolTip>
+                        </Path>
+                    </Button>
+                    <Button Grid.Column="7" BorderBrush="{x:Null}" Padding="0" Margin="5,0" Height="auto"
+                    Background="{x:Null}" x:Name="btn_save"   Click="Btn_save_Click" >
+                        <Path Fill="#4E4E4E" Stretch="Fill"  
+                             Width="35" Height="35"
+                           Data="{StaticResource save}"  >
+                            <Path.ToolTip>
+                                <ToolTip x:Name="tt_save" Content="Save"
+                                              Placement="left" 
+                                              HorizontalOffset="10"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="-35"/>
+                            </Path.ToolTip>
+                        </Path>
+                    </Button>
+                    
+                </Grid>
+
+            </Grid>
+
+        </Border>
+
+
+    </Grid>
+</Window>

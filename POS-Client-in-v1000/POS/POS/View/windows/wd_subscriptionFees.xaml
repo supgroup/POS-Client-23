@@ -1,0 +1,309 @@
+﻿<Window x:Class="POS.View.windows.wd_subscriptionFees"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS.View.windows"
+        mc:Ignorable="d" KeyDown="HandleKeyPress"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="SC Commerce"        
+         WindowStyle="None" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" Margin="0"
+         Height="400" Width="350" AllowsTransparency="True" Background="Transparent"
+        Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid Grid.Column="1" Grid.Row="1"    x:Name="grid_subscriptionFees">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid    >
+            <Border  BorderThickness="0" Grid.Row="0" 
+                    CornerRadius="7,7,0,0"  Background="#178DD2">
+                <Grid>
+
+                    <Button   IsCancel="true"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" 
+                             BorderBrush="{x:Null}"  Foreground="White" Margin="7.5,0"  x:Name="btn_colse" Click="Btn_colse_Click"
+                             FontWeight="SemiBold" Width="24" Padding="0" ToolTip="Close"  FontSize="14">
+                        <materialDesign:PackIcon Foreground="White" Kind="Close" 
+                                         Width="20" Height="20"/>
+                    </Button>
+                    <Grid  HorizontalAlignment="Center"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Path Fill="White" Stretch="Fill" Margin="5,0"
+                              HorizontalAlignment="Right" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="15" Height="15"
+                              Data="M10.6,1.6c0.1-0.3,0.1-0.5,0.2-0.8c0.1-0.4,0.4-0.7,0.8-0.7c0.8-0.1,1.5-0.1,2.3,0c0.7,0.1,0.9,0.7,0.9,1.4
+	c0.9,0,1.7,0,2.6,0c0-0.2,0-0.3,0.1-0.5c0.1-0.6,0.6-1,1.2-1c0.5,0,1.1,0,1.6,0c0.8,0,1.2,0.5,1.3,1.5c0.1,0,0.2,0,0.3,0
+	c1,0,1.6,0.6,1.6,1.6c0,4.2,0,8.5,0,12.7c0,0.8,0,1.7,0,2.6c-0.2,0-0.3,0-0.5,0c-3.6,0-7.2,0-10.8,0c-1.5,0-2.3,0.8-2.3,2.3
+	c0,1.7,0,3.4,0,5.2c0,0.1,0,0.3,0,0.4c-0.2,0-0.3,0-0.4,0c-2.1,0-4.1,0-6.2,0C2.4,26.4,2,26,2,25.1c0-7.3,0-14.6,0-21.9
+	c0-1,0.6-1.6,1.6-1.6c0.1,0,0.2,0,0.3,0c0-0.1,0-0.2,0-0.4C4,0.6,4.5,0,5.2,0c0.6,0,1.1,0,1.7,0C7.5,0,8,0.5,8.1,1.2
+	c0,0.1,0,0.2,0,0.3C8.9,1.6,9.8,1.6,10.6,1.6z M18.1,14c-0.4,0-0.8,0-1.3,0c-0.3,0-0.5,0.1-0.5,0.4c0,0.7,0,1.4,0,2
+	c0,0.3,0.1,0.4,0.4,0.4c0.9,0,1.7,0,2.6,0c0.3,0,0.4-0.1,0.4-0.4c0-0.7,0-1.4,0-2c0-0.3-0.1-0.4-0.4-0.4C18.9,14,18.5,14,18.1,14z
+	 M18.1,11.8c0.4,0,0.8,0,1.2,0c0.3,0,0.5-0.1,0.5-0.5c0-0.7,0-1.3,0-2c0-0.3-0.2-0.5-0.5-0.5c-0.8,0-1.7,0-2.5,0
+	c-0.3,0-0.5,0.2-0.5,0.5c0,0.7,0,1.3,0,2c0,0.3,0.1,0.5,0.5,0.5C17.2,11.8,17.7,11.8,18.1,11.8z M12.8,8.9
+	C12.8,8.9,12.8,8.9,12.8,8.9c-0.4,0-0.9,0-1.3,0C11.2,8.9,11,9,11,9.3c0,0.7,0,1.3,0,2c0,0.3,0.1,0.5,0.4,0.5c0.9,0,1.7,0,2.6,0
+	c0.3,0,0.5-0.1,0.5-0.5c0-0.7,0-1.3,0-2c0-0.3-0.2-0.5-0.5-0.5C13.6,8.9,13.2,8.9,12.8,8.9z M12.7,14c-0.4,0-0.8,0-1.3,0
+	c-0.3,0-0.4,0.1-0.4,0.5c0,0.7,0,1.3,0,2c0,0.3,0.1,0.5,0.4,0.5c0.9,0,1.7,0,2.6,0c0.3,0,0.4-0.1,0.4-0.4c0-0.7,0-1.4,0-2.1
+	c0-0.3-0.2-0.4-0.4-0.4C13.6,14,13.2,14,12.7,14z M7.5,16.9c0.4,0,0.9,0,1.3,0c0.3,0,0.4-0.1,0.4-0.4c0-0.7,0-1.4,0-2
+	c0-0.3-0.1-0.4-0.4-0.4c-0.9,0-1.7,0-2.6,0c-0.3,0-0.4,0.1-0.4,0.4c0,0.7,0,1.4,0,2c0,0.3,0.1,0.4,0.5,0.4C6.6,16.9,7,16.9,7.5,16.9
+	z M7.5,11.8c0.4,0,0.8,0,1.3,0c0.3,0,0.5-0.1,0.5-0.4c0-0.7,0-1.4,0-2C9.2,9,9,8.9,8.8,8.9c-0.9,0-1.7,0-2.6,0
+	C5.9,8.9,5.7,9,5.7,9.3c0,0.7,0,1.4,0,2c0,0.3,0.1,0.4,0.4,0.4C6.6,11.8,7,11.8,7.5,11.8z M7.4,22c0.4,0,0.9,0,1.3,0
+	c0.3,0,0.5-0.1,0.5-0.4c0-0.7,0-1.4,0-2C9.2,19.2,9,19,8.7,19c-0.9,0-1.7,0-2.6,0c-0.3,0-0.5,0.1-0.5,0.4c0,0.7,0,1.4,0,2
+	c0,0.3,0.1,0.4,0.4,0.4C6.6,22,7,22,7.4,22z M13.6,3c0-0.5,0-0.9,0-1.4c0-0.3-0.1-0.4-0.3-0.3c-0.4,0-0.7,0-1.1,0
+	c-0.1,0-0.3,0.2-0.3,0.3c0,1,0,1.9,0,2.9c0,0.1,0.2,0.3,0.3,0.3c0.4,0,0.8,0,1.1,0c0.3,0,0.3-0.1,0.3-0.3C13.6,3.9,13.6,3.4,13.6,3z
+	 M6.9,2.9c0-0.5,0-0.9,0-1.4c0-0.2-0.1-0.3-0.3-0.3c-0.4,0-0.7,0-1.1,0c-0.2,0-0.3,0.1-0.3,0.3c0,0.9,0,1.9,0,2.8
+	c0,0.1,0.2,0.3,0.2,0.3c0.4,0,0.8,0,1.2,0c0.2,0,0.3-0.1,0.3-0.3C6.9,3.9,6.9,3.4,6.9,2.9z M20.4,2.9c0-0.5,0-0.9,0-1.4
+	c0-0.3-0.1-0.4-0.3-0.3c-0.4,0-0.7,0-1.1,0c-0.1,0-0.3,0.2-0.3,0.2c0,1,0,2,0,3c0,0.1,0.2,0.2,0.2,0.2c0.4,0,0.8,0,1.1,0
+	c0.2,0,0.3-0.1,0.3-0.3C20.4,3.9,20.4,3.4,20.4,2.9z M14.7,27.4L14.7,27.4v0.7v0.1h-0.1h-0.1v-0.1v-0.6v-0.1H14.7
+	C14.6,27.3,14.7,27.3,14.7,27.4z M15.4,27.3L15.4,27.3L15.4,27.3L15.3,28v0.1h0.1h0.1V28L15.4,27.3L15.4,27.3L15.4,27.3z M13,28.1
+	L13,28.1L13,28.1l0.1-0.7v-0.1H13H13v0.1L13,28.1L13,28.1C13,28.1,13,28.1,13,28.1z M20.7,27.3L20.7,27.3L20.7,27.3L20.6,28v0.1h0.1
+	h0.1V28L20.7,27.3L20.7,27.3C20.7,27.3,20.7,27.3,20.7,27.3z M21.5,27.3L21.5,27.3L21.5,27.3L21.4,28v0.1h0.1h0.1V28L21.5,27.3
+	L21.5,27.3C21.5,27.3,21.5,27.3,21.5,27.3z M13.9,27.3L13.9,27.3L13.9,27.3L13.8,28v0.1h0.1h0.1V28L13.9,27.3L13.9,27.3
+	C13.9,27.3,13.9,27.3,13.9,27.3z M17.7,28.1L17.7,28.1L17.7,28.1l0.1-0.7v-0.1h-0.1h-0.1v0.1L17.7,28.1L17.7,28.1
+	C17.6,28.1,17.6,28.1,17.7,28.1z M18.4,28.1L18.4,28.1L18.4,28.1l0.1-0.7v-0.1h-0.1h-0.1v0.1L18.4,28.1L18.4,28.1
+	C18.3,28.1,18.3,28.1,18.4,28.1z M19.2,28.1L19.2,28.1L19.2,28.1l0.1-0.7v-0.1h-0.1h-0.1v0.1L19.2,28.1L19.2,28.1
+	C19.1,28.1,19.1,28.1,19.2,28.1z M22.2,27.3L22.2,27.3L22.2,27.3L22.2,28v0.1h0.1h0.1V28L22.2,27.3L22.2,27.3L22.2,27.3z M16.8,28.1
+	L16.8,28.1L16.8,28.1l0.1-0.7v-0.1h-0.1h-0.1v0.1L16.8,28.1L16.8,28.1C16.8,28.1,16.8,28.1,16.8,28.1z M26,27.3L26,27.3L26,27.3
+	L26,28v0.1H26h0.1V28L26,27.3L26,27.3L26,27.3z M24.5,27.3L24.5,27.3L24.5,27.3L24.4,28v0.1h0.1h0.1V28L24.5,27.3L24.5,27.3
+	C24.5,27.3,24.5,27.3,24.5,27.3z M25.3,27.3L25.3,27.3L25.3,27.3L25.2,28v0.1h0.1h0.1V28L25.3,27.3L25.3,27.3
+	C25.3,27.3,25.3,27.3,25.3,27.3z M26.8,27.3L26.8,27.3L26.8,27.3L26.7,28v0.1h0.1h0.1V28L26.8,27.3L26.8,27.3L26.8,27.3z M23,27.3
+	L23,27.3L23,27.3L22.9,28v0.1H23H23V28L23,27.3L23,27.3L23,27.3z M14.4,25.1H15c0.1-0.2,0.2-0.4,0.2-0.7c0.1-0.2,0.1-0.5,0-0.8
+	c-0.1-0.2-0.1-0.3-0.1-0.4h-0.8c-0.1,0.1-0.1,0.2-0.1,0.4c-0.1,0.2-0.1,0.5,0,0.8C14.2,24.7,14.3,24.9,14.4,25.1z M13.9,23.8h-0.6
+	v0.5h0.6C13.9,24.1,13.9,23.9,13.9,23.8z M13.9,24.6h-0.7v0.5h0.9C14,24.9,13.9,24.8,13.9,24.6z M14,23.2h-0.4
+	c-0.2,0-0.3,0.1-0.4,0.2h0.7C13.9,23.4,14,23.3,14,23.2z M16.1,23.5c-0.1-0.1-0.2-0.2-0.4-0.2h-0.3c0,0.1,0.1,0.2,0.1,0.2H16.1z
+	 M15.5,24.3h0.6v-0.5h-0.6C15.6,23.9,15.6,24.1,15.5,24.3z M13.6,25.8h2.2c0.2,0,0.3-0.1,0.4-0.2h-2.9
+	C13.3,25.6,13.4,25.8,13.6,25.8z M16.2,24.6h-0.6c-0.1,0.2-0.1,0.4-0.2,0.5h0.8V24.6z M29.9,21.1v9.4c0,0.8-0.7,1.5-1.5,1.5H12.5
+	c-0.8,0-1.5-0.7-1.5-1.5v-9.4c0-0.8,0.7-1.5,1.5-1.5h15.9C29.2,19.6,29.9,20.3,29.9,21.1z M28.6,29.8c0-0.1-0.1-0.2-0.2-0.2H12.5
+	c-0.1,0-0.2,0.1-0.2,0.2s0.1,0.2,0.2,0.2h15.9C28.5,30,28.6,29.9,28.6,29.8z M15.8,26.1c0.4,0,0.7-0.3,0.7-0.7v-1.7
+	c0-0.4-0.3-0.7-0.7-0.7h-2.2c-0.4,0-0.7,0.3-0.7,0.7v1.7c0,0.4,0.3,0.7,0.7,0.7H15.8z M15.6,27.3L15.6,27.3
+	c-0.1-0.1-0.1-0.1-0.2-0.1s-0.1,0-0.1,0s-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0.1C15,27.3,15,27.3,15,27.3s0,0.1,0,0.1v0.6
+	c0,0.1,0,0.1,0,0.1c0.1,0,0.1,0,0.1,0s0.1,0.1,0.1,0.1s0.1,0,0.1,0s0.1,0,0.1,0s0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1L15.6,27.3
+	C15.7,27.4,15.7,27.3,15.6,27.3z M14.9,27.3L14.9,27.3c-0.1-0.1-0.1-0.1-0.2-0.1s-0.1,0-0.1,0s-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0.1
+	c-0.1,0.1-0.1,0.1-0.1,0.1s0,0.1,0,0.1v0.6c0,0.1,0,0.1,0,0.1l0.1,0.1c0,0,0.1,0.1,0.1,0.1s0.1,0,0.1,0s0.1,0,0.1,0
+	c0.1,0,0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1v-0.6C14.9,27.4,14.9,27.3,14.9,27.3z M14.1,27.3L14.1,27.3c-0.1-0.1-0.1-0.1-0.2-0.1
+	c-0.1,0-0.1,0-0.1,0s-0.1,0-0.1,0s-0.1,0-0.1,0.1s-0.1,0.1-0.1,0.1s0,0.1,0,0.1v0.6c0,0.1,0,0.1,0,0.1c0,0.1,0.1,0.1,0.1,0.1
+	s0.1,0.1,0.1,0.1c0.1,0,0.1,0,0.1,0c0.1,0,0.1,0,0.1,0s0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1v-0.6C14.2,27.4,14.1,27.3,14.1,27.3z
+	 M12.9,27.3L12.9,27.3c-0.1,0.1-0.1,0.1-0.1,0.2v0.6c0,0.1,0,0.1,0,0.1c0,0.1,0.1,0.1,0.1,0.1s0.1,0.1,0.1,0.1s0.1,0,0.1,0
+	c0.1,0,0.1,0,0.1,0c0.1,0,0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1v-0.6c0-0.1,0-0.1,0-0.1l-0.1-0.1c0,0-0.1-0.1-0.1-0.1s-0.1,0-0.1,0
+	s-0.1,0-0.1,0S12.9,27.2,12.9,27.3z M16.6,28.1L16.6,28.1c0.1,0.1,0.1,0.1,0.2,0.1s0.1,0,0.1,0c0.1,0,0.1,0,0.1,0
+	c0.1,0,0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1v-0.6c0-0.1,0-0.1,0-0.1l-0.1-0.1c0,0-0.1-0.1-0.1-0.1c-0.1,0-0.1,0-0.1,0
+	c-0.1,0-0.1,0-0.1,0s-0.1,0-0.1,0.1c-0.1,0.1-0.1,0.1-0.1,0.1s0,0.1,0,0.1V28C16.5,28.1,16.5,28.1,16.6,28.1z M17.3,28.1L17.3,28.1
+	c0.1,0.1,0.1,0.1,0.2,0.1s0.1,0,0.1,0c0.1,0,0.1,0,0.1,0s0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1v-0.6c0-0.1,0-0.1,0-0.1l-0.1-0.1
+	c0,0-0.1-0.1-0.1-0.1s-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0s-0.1,0-0.1,0.1l-0.1,0.1c0,0,0,0.1,0,0.1V28C17.3,28.1,17.3,28.1,17.3,28.1z
+	 M18.1,28.1L18.1,28.1c0.1,0.1,0.1,0.1,0.2,0.1s0.1,0,0.1,0c0.1,0,0.1,0,0.1,0c0.1,0,0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1v-0.6
+	c0-0.1,0-0.1,0-0.1l-0.1-0.1c0,0-0.1-0.1-0.1-0.1c-0.1,0-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0s-0.1,0-0.1,0.1c-0.1,0.1-0.1,0.1-0.1,0.1
+	s0,0.1,0,0.1V28C18.1,28.1,18.1,28.1,18.1,28.1z M18.8,28.1L18.8,28.1c0.1,0.1,0.1,0.1,0.2,0.1s0.1,0,0.1,0c0.1,0,0.1,0,0.1,0
+	s0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1v-0.6c0-0.1,0-0.1,0-0.1l-0.1-0.1c0,0-0.1-0.1-0.1-0.1s-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0
+	s-0.1,0-0.1,0.1c-0.1,0.1-0.1,0.1-0.1,0.1s0,0.1,0,0.1V28C18.8,28.1,18.8,28.1,18.8,28.1z M20.4,28.1L20.4,28.1
+	c0.1,0.1,0.1,0.1,0.2,0.1s0.1,0,0.1,0c0.1,0,0.1,0,0.1,0c0.1,0,0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1v-0.6c0-0.1,0-0.1,0-0.1
+	L21,27.2c0,0-0.1-0.1-0.1-0.1c-0.1,0-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0s-0.1,0-0.1,0.1c-0.1,0.1-0.1,0.1-0.1,0.1s0,0.1,0,0.1V28
+	C20.3,28.1,20.3,28.1,20.4,28.1z M21.2,28.1L21.2,28.1c0.1,0.1,0.1,0.1,0.2,0.1c0.1,0,0.1,0,0.1,0c0.1,0,0.1,0,0.1,0s0.1,0,0.1-0.1
+	l0.1-0.1c0,0,0-0.1,0-0.1v-0.6c0-0.1,0-0.1,0-0.1l-0.1-0.1c0,0-0.1-0.1-0.1-0.1s-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0
+	c-0.1,0-0.1,0-0.1,0.1c-0.1,0.1-0.1,0.1-0.1,0.1s0,0.1,0,0.1V28C21.2,28.1,21.2,28.1,21.2,28.1z M21.9,28.1L21.9,28.1
+	c0.1,0.1,0.1,0.1,0.2,0.1s0.1,0,0.1,0c0.1,0,0.1,0,0.1,0s0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1v-0.6c0-0.1,0-0.1,0-0.1l-0.1-0.1
+	c0,0-0.1-0.1-0.1-0.1s-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0s-0.1,0-0.1,0.1c-0.1,0.1-0.1,0.1-0.1,0.1s0,0.1,0,0.1V28
+	C21.9,28.1,21.9,28.1,21.9,28.1z M22.7,28.1L22.7,28.1c0.1,0.1,0.1,0.1,0.2,0.1c0.1,0,0.1,0,0.1,0c0.1,0,0.1,0,0.1,0s0.1,0,0.1-0.1
+	l0.1-0.1c0,0,0-0.1,0-0.1v-0.6c0-0.1,0-0.1,0-0.1l-0.1-0.1c0,0-0.1-0.1-0.1-0.1s-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0
+	c-0.1,0-0.1,0-0.1,0.1c-0.1,0.1-0.1,0.1-0.1,0.1s0,0.1,0,0.1V28C22.7,28.1,22.7,28.1,22.7,28.1z M24.2,28.1L24.2,28.1
+	c0.1,0.1,0.1,0.1,0.2,0.1s0.1,0,0.1,0c0.1,0,0.1,0,0.1,0s0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1v-0.6c0-0.1,0-0.1,0-0.1l-0.1-0.1
+	c0,0-0.1-0.1-0.1-0.1s-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0s-0.1,0-0.1,0.1l-0.1,0.1c0,0,0,0.1,0,0.1V28C24.2,28.1,24.2,28.1,24.2,28.1z
+	 M25,28.1L25,28.1c0.1,0.1,0.1,0.1,0.2,0.1c0.1,0,0.1,0,0.1,0s0.1,0,0.1,0c0.1,0,0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1v-0.6
+	c0-0.1,0-0.1,0-0.1l-0.1-0.1c0,0-0.1-0.1-0.1-0.1c-0.1,0-0.1,0-0.1,0s-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0.1C25,27.3,25,27.3,25,27.3
+	s0,0.1,0,0.1V28C25,28.1,25,28.1,25,28.1z M25.7,28.1L25.7,28.1c0.1,0.1,0.1,0.1,0.2,0.1c0.1,0,0.1,0,0.1,0c0.1,0,0.1,0,0.1,0
+	c0.1,0,0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1v-0.6c0-0.1,0-0.1,0-0.1l-0.1-0.1c0,0-0.1-0.1-0.1-0.1c-0.1,0-0.1,0-0.1,0
+	c-0.1,0-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0.1c-0.1,0.1-0.1,0.1-0.1,0.1c0,0,0,0.1,0,0.1V28.1C25.7,28.1,25.7,28.1,25.7,28.1z
+	 M26.5,28.1L26.5,28.1c0.1,0.1,0.1,0.1,0.2,0.1c0.1,0,0.1,0,0.1,0c0.1,0,0.1,0,0.1,0c0.1,0,0.1,0,0.1-0.1l0.1-0.1c0,0,0-0.1,0-0.1
+	v-0.6c0-0.1,0-0.1,0-0.1L27,27.2c0,0-0.1-0.1-0.1-0.1s-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0c-0.1,0-0.1,0-0.1,0.1
+	c-0.1,0.1-0.1,0.1-0.1,0.1s0,0.1,0,0.1V28C26.5,28.1,26.5,28.1,26.5,28.1z M28.6,21.4c0-0.3-0.2-0.6-0.6-0.6H12.9
+	c-0.3,0-0.6,0.2-0.6,0.6c0,0.3,0.2,0.6,0.6,0.6H28C28.3,22,28.6,21.8,28.6,21.4z M32,16C32,16,32,16,32,16C32,16,32,16,32,16
+	C32,16,32,16,32,16C32,16,32,16,32,16z M0,16C0,16,0,16,0,16C0,16,0,16,0,16C0,16,0,16,0,16C0,16,0,16,0,16z"/>
+                        <TextBlock Text="Subscription Fees" x:Name="txt_Title" Foreground="White" 
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Grid.Column="1"      Margin="5,0"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border BorderThickness="1,0,1,1"  Grid.Row="1"
+                    CornerRadius="0,0,7,7" BorderBrush="#999999"  Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <DataGrid  Margin="5,5,5,5"  Grid.Row="0"  IsReadOnly="True"  Background="White"
+                      materialDesign:DataGridAssist.CornerRadius="5" 
+                       x:Name="dg_subscriptionFees"
+                        AutoGenerateColumns="False" 
+                        ColumnWidth="SizeToHeader" SelectionChanged="Dg_subscriptionFees_SelectionChanged"    AlternatingRowBackground="#f3f3f3" AlternationCount="2">
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"></SolidColorBrush>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#e7f3fa" />
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0 0 1 0"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*"  Header="Months Count" Binding="{Binding Path=monthsCount}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding isActive}" Value="0">
+                                            <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*"  Header="Amount" Binding="{Binding Path=amount}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding isActive}" Value="0">
+                                            <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!--#region  monthsCount-->
+                <TextBox x:Name="tb_monthsCount" Grid.Row="1" Text="{Binding monthsCount, Mode=OneWay}" Padding="10,0,5,0"
+                                     BorderThickness="0,0,0,2" materialDesign:HintAssist.Hint="Months Count..."
+                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     TabIndex="1" Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8" 
+                                     BorderBrush="AliceBlue" 
+                                     MaxLength="20" materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                     Height="40" Margin="10,5,10,5"   >
+                    <TextBox.ToolTip>
+                        <ToolTip x:Name="tt_monthsCount" Content="Months Count"
+                                              Placement="left" 
+                                              HorizontalOffset="35"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="20"/>
+                    </TextBox.ToolTip>
+                </TextBox>
+                <Path Fill="#E81123" Stretch="Fill" Margin="0,15,15,15" x:Name="p_errorMonthsCount"
+                                  HorizontalAlignment="Right"  Grid.Row="1"  Visibility="Collapsed" 
+                                  VerticalAlignment="Center" Width="15"  Height="15"
+                                  Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8 C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12 C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 L13,15 L13,17 Z">
+                    <Path.ToolTip>
+                        <ToolTip  x:Name="tt_errorMonthsCount"  Content="Name Not Validate"  Style="{StaticResource ToolTipError}"/>
+                    </Path.ToolTip>
+                </Path>
+                <!--#endregion-->
+                <!--#region  amount-->
+                <TextBox x:Name="tb_amount"  Grid.Row="2"  Text="{Binding amount, Mode=OneWay}"    Padding="10,0,5,0" 
+                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     BorderThickness="0,0,0,2" materialDesign:HintAssist.Hint="Amount..."    
+                                     Foreground="#4E4E4E"  TextBlock.FontSize="12" Background="#f8f8f8"
+                                     BorderBrush="AliceBlue" MaxLength="100"
+                                     materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
+                                     Height="40"   Margin="10,5,10,5"  >
+                    <TextBox.ToolTip>
+                        <ToolTip x:Name="tt_amount" Content="Amount"
+                                              Placement="left" 
+                                              HorizontalOffset="35"
+                                              PlacementRectangle="50,0,0,0"
+                                              VerticalOffset="20"/>
+                    </TextBox.ToolTip>
+                </TextBox>
+                <Path Fill="#E81123" Stretch="Fill" Margin="5,5,15,5" Grid.Row="2"
+                              HorizontalAlignment="Right"  Visibility="Collapsed" 
+                         VerticalAlignment="Center" Width="15"  Height="15"
+                              Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8 C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12 C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 L13,15 L13,17 Z">
+                    <Path.ToolTip>
+                        <ToolTip   Content="Name Not Validate"  Style="{StaticResource ToolTipError}"/>
+                    </Path.ToolTip>
+                </Path>
+                <!--#endregion-->
+                <Grid Grid.Row="11" Margin="5,5,5,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Row="1">
+                        <Button x:Name="btn_add" 
+                          Background="#4E4E4E" BorderBrush="{x:Null}"
+                    Margin="1,1" Click="Btn_add_Click" >
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <materialDesign:PackIcon Name="txt_add_Icon" Kind="PlusThick" VerticalAlignment="Center" Width="15"  Height="15" Margin="0,1,2,0">
+
+                                </materialDesign:PackIcon>
+                                <TextBlock Visibility="Collapsed" Name="txt_addButton" Text="Add" VerticalAlignment="Center">
+
+                                </TextBlock>
+
+                            </StackPanel>
+                        </Button>
+                        <Border.ToolTip>
+                            <ToolTip x:Name="tt_add_Button" Content="Add"
+                                    Placement="left" 
+                                    HorizontalOffset="15"
+                                    PlacementRectangle="50,0,0,0"
+                                    VerticalOffset="30"/>
+                        </Border.ToolTip>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="1">
+                        <Button x:Name="btn_update"  
+                        Background="#4E4E4E" BorderBrush="{x:Null}"
+                   Margin="1,1"  Click="Btn_update_Click" >
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <materialDesign:PackIcon Name="txt_update_Icon" Kind="Edit" VerticalAlignment="Center" Width="15" Height="15" Margin="0,1,2,0">
+
+                                </materialDesign:PackIcon>
+                                <TextBlock Visibility="Collapsed" Name="txt_updateButton" Text="Update" VerticalAlignment="Center">
+
+                                </TextBlock>
+
+                            </StackPanel>
+                        </Button>
+                        <Border.ToolTip>
+
+                            <ToolTip x:Name="tt_update_Button" Content="Update"
+                                    Placement="left" 
+                                    HorizontalOffset="15"
+                                    PlacementRectangle="50,0,0,0"
+                                    VerticalOffset="30"/>
+
+                        </Border.ToolTip>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="2">
+                        <Button x:Name="btn_delete"  
+                        Background="#4E4E4E" BorderBrush="{x:Null}"
+                    Margin="1,1"  Click="Btn_delete_Click" >
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
+                                <materialDesign:PackIcon Name="txt_delete_Icon" Kind="Delete" VerticalAlignment="Center" Width="15" Height="15" Margin="0,1,2,0">
+
+                                </materialDesign:PackIcon>
+                                <TextBlock Visibility="Collapsed" Name="txt_deleteButton" Width="auto" Text="Delete" VerticalAlignment="Center">
+
+                                </TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Border.ToolTip>
+                            <ToolTip x:Name="tt_delete_Button" Content="delete"
+                                    Placement="left" 
+                                    HorizontalOffset="15"
+                                    PlacementRectangle="50,0,0,0"
+                                    VerticalOffset="30"/>
+                        </Border.ToolTip>
+                    </Border>
+                </Grid>
+
+            </Grid>
+
+        </Border>
+
+
+    </Grid>
+</Window>
