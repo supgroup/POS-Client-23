@@ -152,7 +152,7 @@ namespace POS.View.sales
             dg_billDetails.Columns[3].Header = MainWindow.resourcemanager.GetString("trUnit");
             dg_billDetails.Columns[4].Header = MainWindow.resourcemanager.GetString("trQTR");
             dg_billDetails.Columns[5].Header = MainWindow.resourcemanager.GetString("trPrice");
-            dg_billDetails.Columns[6].Header = MainWindow.resourcemanager.GetString("trAmount");
+            dg_billDetails.Columns[6].Header = MainWindow.resourcemanager.GetString("trTotal");
 
             // MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_discount, MainWindow.resourcemanager.GetString("trDiscountHint"));
             txt_discount.Text = MainWindow.resourcemanager.GetString("trDiscount");
