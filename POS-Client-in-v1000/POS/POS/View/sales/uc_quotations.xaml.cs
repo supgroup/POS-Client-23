@@ -1822,6 +1822,11 @@ namespace POS.View.sales
             {
                 _SequenceNum++;
                 decimal total = (decimal)(itemT.price * itemT.quantity);
+
+                decimal itemTax = 0;
+                if (itemT.itemTax != null)
+                    itemTax = (decimal)itemT.itemTax;
+
                 billDetails.Add(new BillDetails()
                 {
                     ID = _SequenceNum,
@@ -1836,7 +1841,7 @@ namespace POS.View.sales
                     OfferValue = (decimal)itemT.offerValue,
                     OfferName = itemT.offerName,
                     basicPrice = (decimal)itemT.itemUnitPrice,
-                    Tax = (decimal)itemT.itemTax,
+                    Tax = itemTax,
                     isTaxExempt = itemT.isTaxExempt,
                     VATRatio = itemT.VATRatio,
                 });

@@ -2271,7 +2271,13 @@ namespace POS.View.sales
             foreach (ItemTransfer itemT in invoiceItems)
             {
                 _SequenceNum++;
+
                 decimal total = (decimal)(itemT.price * itemT.quantity);
+
+                decimal itemTax = 0;
+                if (itemT.itemTax != null)
+                    itemTax = (decimal)itemT.itemTax;
+
                 billDetails.Add(new BillDetails()
                 {
                     ID = _SequenceNum,
@@ -2289,7 +2295,7 @@ namespace POS.View.sales
                     basicPrice = (decimal)itemT.itemUnitPrice,
                     isTaxExempt = itemT.isTaxExempt,
                     VATRatio = itemT.VATRatio,
-                    Tax = (decimal)itemT.itemTax,
+                    Tax = itemTax,
                 });
             }
 
