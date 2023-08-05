@@ -2958,19 +2958,17 @@ namespace POS.View.sales
                 if (sender != null)
                     SectionData.StartAwait(grid_main);
 
-                TimeSpan elapsed = (DateTime.Now - _lastKeystroke);
-                if (elapsed.TotalMilliseconds > 100 && (cb_company.SelectedValue != null && cb_company.SelectedValue.ToString() != "0"))
+                if (cb_company.SelectedValue != null && cb_company.SelectedValue.ToString() != "0")
                 {
                     sp_PrePaid.IsEnabled = true;
                     #region free delivery according to settings
                     if (AppSettings.freeDelivery)
                         sp_isFreeDelivery.IsEnabled = true;
                     #endregion
-                    _SelectedCompany = (int)cb_company.SelectedValue;
+
                     companyModel = FillCombo.shippingCompaniesList.Find(c => c.shippingCompanyId == (int)cb_company.SelectedValue);
                     _DeliveryCost = (decimal)companyModel.deliveryCost;
                     _RealDeliveryCost = (decimal)companyModel.RealDeliveryCost;
-                    refreshTotalValue();
 
                     if (companyModel.deliveryType == "local")
                     {
@@ -2980,24 +2978,28 @@ namespace POS.View.sales
                     {
                         cb_user.SelectedIndex = -1;
                         cb_user.Visibility = Visibility.Collapsed;
+                        p_errorUser.Visibility = Visibility.Collapsed;
                     }
                 }
-                else if (cb_company.SelectedValue != null && cb_company.SelectedValue.ToString() == "0")
+                else
                 {
                     companyModel = new ShippingCompanies();
-                    cb_company.SelectedItem = "";
                     cb_user.SelectedIndex = -1;
                     _DeliveryCost = 0;
                     _RealDeliveryCost = 0;
+                    cb_user.Visibility = Visibility.Collapsed;
+                    p_errorUser.Visibility = Visibility.Collapsed;
+
+                    #region
                     sp_PrePaid.IsEnabled = false;
                     sp_isFreeDelivery.IsEnabled = false;
                     chk_onDelivery.IsChecked = false;
                     chk_isFreeDelivery.IsChecked = false;
-                }
-                else
-                    cb_company.SelectedValue = _SelectedCompany;
+                    #endregion
 
+                }
                 tb_deliveryCost.Text = SectionData.PercentageDecTostring(_DeliveryCost);
+                refreshTotalValue();
                 if (sender != null)
                     SectionData.EndAwait(grid_main);
             }
