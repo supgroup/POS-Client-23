@@ -963,7 +963,11 @@ namespace POS.View.sales
         {
             bool valid = true;
             if (!SectionData.validateEmptyComboBox(cb_customer, p_errorCustomer, tt_errorCustomer, "trEmptyCustomerToolTip"))
-                exp_customer.IsExpanded = true;
+            {
+  exp_customer.IsExpanded = true;
+                valid = false;
+            }
+              
             if (billDetails.Count == 0)
                 Toaster.ShowInfo(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trAddInvoiceWithoutItems"), animation: ToasterAnimation.FadeIn);
 
@@ -972,7 +976,8 @@ namespace POS.View.sales
                 valid = false;
                  return valid;
             }
-            valid = validateItemUnits();
+            
+            valid = validateItemUnits() && valid ;
 
             return valid;
         }

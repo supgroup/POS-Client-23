@@ -85,11 +85,11 @@ namespace POS.View.sales
         Coupon couponModel = new Coupon();
         IEnumerable<Coupon> coupons;
         List<CouponInvoice> selectedCoupons = new List<CouponInvoice>();
-       // Pos posModel = new Pos();
-       Pos pos;
+        // Pos posModel = new Pos();
+        Pos pos;
         List<ItemTransfer> invoiceItems;
         ShippingCompanies companyModel = new ShippingCompanies();
-       // List<ShippingCompanies> companies;
+        // List<ShippingCompanies> companies;
         //User userModel = new User();
         //List<User> users;
         public List<Control> controls;
@@ -1024,7 +1024,7 @@ namespace POS.View.sales
                                         //    price = (decimal)slice.priceTax;
                                         //}
                                         //else
-                                            price = (decimal)slice.price;
+                                        price = (decimal)slice.price;
                                         basicPrice = (decimal)slice.price;
                                     }
 
@@ -1057,9 +1057,9 @@ namespace POS.View.sales
                                         itemTax = (decimal)item.taxes;
                                     billDetails[index].Count++;
                                     billDetails[index].Total = billDetails[index].Count * billDetails[index].Price;
-                                   // if (AppSettings.itemsTax_bool == true)
-                                      //  billDetails[index].Tax = (decimal)(billDetails[index].Count * itemTax);
-                                   // else
+                                    // if (AppSettings.itemsTax_bool == true)
+                                    //  billDetails[index].Tax = (decimal)(billDetails[index].Count * itemTax);
+                                    // else
                                     //    billDetails[index].Tax = 0;
 
                                     _Sum += billDetails[index].Price;
@@ -1125,7 +1125,12 @@ namespace POS.View.sales
         {
             bool valid = true;
             if (!SectionData.validateEmptyComboBox(cb_customer, p_errorCustomer, tt_errorCustomer, "trEmptyCustomerToolTip"))
+            {
                 exp_customer.IsExpanded = true;
+                valid = false;
+
+            }
+
             if (!SectionData.validateEmptyComboBox(cb_branch, p_errorBranch, tt_errorBranch, "trEmptyBranchToolTip"))
                 exp_store.IsExpanded = true;
             if (billDetails.Count == 0)
@@ -1134,8 +1139,8 @@ namespace POS.View.sales
             if ((cb_customer.SelectedValue != null && cb_customer.SelectedValue.ToString() == "0") || billDetails.Count == 0
                 || (cb_branch.SelectedValue != null && cb_branch.SelectedValue.ToString() == "0"))
                 valid = false;
-            if (valid)
-                valid = validateItemUnits();
+          //  if (valid)
+                valid = validateItemUnits() && valid;
             return valid;
         }
         private bool validateItemUnits()
@@ -1546,7 +1551,7 @@ namespace POS.View.sales
             {
                 invoice.taxValue = _TaxValue;
                 invoice.invoiceTaxes = invoiceTaxex;
-              invoice.tax = _TaxValue;
+                invoice.tax = _TaxValue;
             }
             else
             {
@@ -1609,7 +1614,7 @@ namespace POS.View.sales
                 itemT.unitName = billDetails[i].Unit;
                 itemT.isTaxExempt = billDetails[i].isTaxExempt;
                 itemT.VATRatio = billDetails[i].VATRatio;
-                
+
 
                 //calculate VATValue
                 if (AppSettings.itemsTax_bool == true)
@@ -1710,7 +1715,7 @@ namespace POS.View.sales
                             //if (AppSettings.itemsTax_bool == true)
                             //    price = (decimal)defaultsaleUnit.priceTax;
                             //else
-                                price = (decimal)defaultsaleUnit.price;
+                            price = (decimal)defaultsaleUnit.price;
                             basicPrice = (decimal)defaultsaleUnit.price;
                         }
                         else
@@ -1720,7 +1725,7 @@ namespace POS.View.sales
                             //if (AppSettings.itemsTax_bool == true)
                             //    price = (decimal)slice.priceTax;
                             //else
-                                price = (decimal)slice.price;
+                            price = (decimal)slice.price;
                             basicPrice = (decimal)slice.price;
                         }
                         int index = billDetails.IndexOf(billDetails.Where(p => p.itemUnitId == defaultsaleUnit.itemUnitId).FirstOrDefault());
@@ -2474,7 +2479,7 @@ namespace POS.View.sales
                         //if (AppSettings.itemsTax_bool == true)
                         //    price = (decimal)unit.priceTax;
                         //else
-                            price = (decimal)unit.price;
+                        price = (decimal)unit.price;
                     }
                     else
                     {
@@ -2484,7 +2489,7 @@ namespace POS.View.sales
                             //if (AppSettings.itemsTax_bool == true)
                             //    price = (decimal)slice.priceTax;
                             //else
-                                price = (decimal)slice.price;
+                            price = (decimal)slice.price;
                         }
 
                     }
@@ -2680,7 +2685,7 @@ namespace POS.View.sales
 
                     //decimal itemTax = 0;
                     //if (item.taxes != null)
-                        //itemTax = (decimal)item.taxes;
+                    //itemTax = (decimal)item.taxes;
 
                     //refresh total cell
                     tb = dg_billDetails.Columns[6].GetCellContent(dg_billDetails.Items[index]) as TextBlock;
@@ -3373,7 +3378,7 @@ namespace POS.View.sales
                             itemscount = invoiceItems.Count();
                             //repsize = reportclass.GetreceiptInvoiceRdlcpath(prInvoice, itemscount);
                             ///printer
-                               clsReports clsrep = new clsReports();
+                            clsReports clsrep = new clsReports();
                             reportSize repsset = await clsrep.CheckPrinterSetting(prInvoice.invType);
                             // rs = reportclass.GetpayInvoiceRdlcpath(prInvoice, AppSettings.salePaperSize, itemscount, rep);
                             repsize.paperSize = repsset.paperSize;
@@ -3401,9 +3406,9 @@ namespace POS.View.sales
                             }
                             List<Serial> srl = new List<Serial>();
                             List<PayedInvclass> repPayedList = new List<PayedInvclass>();
-                          rep.DataSources.Add(new ReportDataSource("DataSetPayedInvclass", repPayedList));
-                        //    rep.DataSources.Add(new ReportDataSource("DataSetSerial", srl));
-                            
+                            rep.DataSources.Add(new ReportDataSource("DataSetPayedInvclass", repPayedList));
+                            //    rep.DataSources.Add(new ReportDataSource("DataSetSerial", srl));
+
                             rep.SetParameters(paramarr);
                             rep.Refresh();
 
@@ -3614,7 +3619,7 @@ namespace POS.View.sales
                             {
 
                                 string filepath = saveFileDialog.FileName;
-                                
+
                                 if (repsize.paperSize != "A4")
                                 {
                                     LocalReportExtensions.customExportToPDF(rep, filepath, repsize.width, repsize.height);
@@ -4239,7 +4244,7 @@ namespace POS.View.sales
                         //if (AppSettings.itemsTax_bool == true)
                         //    price = (decimal)it.priceTax;
                         //else
-                            price = (decimal)it.price;
+                        price = (decimal)it.price;
                         basicPrice = (decimal)it.price;
                     }
                     else
@@ -4249,7 +4254,7 @@ namespace POS.View.sales
                         //if (AppSettings.itemsTax_bool == true)
                         //    price = (decimal)slice.priceTax;
                         //else
-                            price = (decimal)slice.price;
+                        price = (decimal)slice.price;
                         basicPrice = (decimal)slice.price;
                     }
                     b.basicPrice = basicPrice;
