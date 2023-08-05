@@ -997,34 +997,34 @@ namespace POS.View.sales
             {
                 if (sender != null)
                     SectionData.StartAwait(grid_main);
+                await newDraft();
 
-
-                if (billDetails.Count > 0 && _InvoiceType == "qd")
-                {
-                    bool valid = validateItemUnits();
-                    if (valid)
-                    { 
-                        #region Accept
-                        MainWindow.mainWindow.Opacity = 0.2;
-                    wd_acceptCancelPopup w = new wd_acceptCancelPopup();
-                    w.contentText = MainWindow.resourcemanager.GetString("trSaveInvoiceNotification");
-                    // w.contentText = "Do you want save pay invoice in drafts?";
-                    w.ShowDialog();
-                    MainWindow.mainWindow.Opacity = 1;
-                    #endregion
-                        if (w.isOk)
-                        {
-                            await addInvoice(_InvoiceType);
-                        }
-                        await clearInvoice();
-                        setNotifications();
-                    }
-                }
-                else
-                {
-                    clearInvoice();
-                    setNotifications();
-                }
+                //if (billDetails.Count > 0 && _InvoiceType == "qd")
+                //{
+                //    bool valid = validateItemUnits();
+                //    if (valid)
+                //    { 
+                //        #region Accept
+                //        MainWindow.mainWindow.Opacity = 0.2;
+                //    wd_acceptCancelPopup w = new wd_acceptCancelPopup();
+                //    w.contentText = MainWindow.resourcemanager.GetString("trSaveInvoiceNotification");
+                //    // w.contentText = "Do you want save pay invoice in drafts?";
+                //    w.ShowDialog();
+                //    MainWindow.mainWindow.Opacity = 1;
+                //    #endregion
+                //        if (w.isOk)
+                //        {
+                //            await addInvoice(_InvoiceType);
+                //        }
+                //        await clearInvoice();
+                //        setNotifications();
+                //    }
+                //}
+                //else
+                //{
+                //    clearInvoice();
+                //    setNotifications();
+                //}
                 if (sender != null)
                     SectionData.EndAwait(grid_main);
             }
@@ -1034,6 +1034,38 @@ namespace POS.View.sales
                     SectionData.EndAwait(grid_main);
                SectionData.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
+        }
+//
+        async Task newDraft()
+        {
+
+            if (billDetails.Count > 0 && _InvoiceType == "qd")
+            {
+                bool valid = validateItemUnits();
+                if (valid)
+                {
+                    #region Accept
+                    MainWindow.mainWindow.Opacity = 0.2;
+                    wd_acceptCancelPopup w = new wd_acceptCancelPopup();
+                    w.contentText = MainWindow.resourcemanager.GetString("trSaveInvoiceNotification");
+                    // w.contentText = "Do you want save pay invoice in drafts?";
+                    w.ShowDialog();
+                    MainWindow.mainWindow.Opacity = 1;
+                    #endregion
+                    if (w.isOk)
+                    {
+                        await addInvoice(_InvoiceType);
+                    }
+                    await clearInvoice();
+                    setNotifications();
+                }
+            }
+            else
+            {
+                 clearInvoice();
+             
+            }
+            setNotifications();
         }
         private async Task clearInvoice()
         {
@@ -2340,7 +2372,7 @@ namespace POS.View.sales
                SectionData.ExceptionMessage(ex, this, this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
-        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -2348,8 +2380,8 @@ namespace POS.View.sales
                     SectionData.StartAwait(grid_main);
                 MainWindow.mainWindow.KeyDown -= HandleKeyPress;
 
-                saveBeforeExit();
-
+              //  saveBeforeExit();
+                await newDraft();
                 timer.Stop();
                 GC.Collect();
                 if (sender != null)
